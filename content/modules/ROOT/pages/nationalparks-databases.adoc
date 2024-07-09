@@ -301,7 +301,7 @@ service to query for data:
 
 [source,role="copypaste",subs="+attributes"]
 ----
-https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
+https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/data/all
 ----
 
 And the result?
@@ -320,7 +320,7 @@ The application provides an endpoint to do just that:
 
 [source,role="copypaste",subs="+attributes"]
 ----
-https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/data/load
 ----
 
 And the result?
@@ -339,7 +339,7 @@ a browser problem, and the application is working properly.
 
 [source,role="copypaste",subs="+attributes"]
 ----
-https://parksmap-%PROJECT%.%CLUSTER_SUBDOMAIN%
+https://parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
@@ -399,7 +399,7 @@ oc describe route nationalparks
 [source,bash,subs="+attributes,macros+"]
 ----
 Name:                   nationalparks
-Namespace:              %PROJECT%
+Namespace:              {ocp4_starter_project}
 Created:                2 hours ago
 Labels:                 app=workshop
                         app.kubernetes.io/component=nationalparks
@@ -411,7 +411,7 @@ Labels:                 app=workshop
                         component=nationalparks
                         role=backend  
 Annotations:            openshift.io/host.generated=true                          
-Requested Host:         nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%
+Requested Host:         nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}
                         exposed on router router 2 hours ago
 Path:                   <none>
 TLS Termination:        <none>
@@ -443,7 +443,7 @@ If you check your browser now:
 
 [source,role="copypaste",subs="+attributes"]
 ----
-https://parksmap-%PROJECT%.%CLUSTER_SUBDOMAIN%/
+https://parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}/
 ----
 
 image::nationalparks-databases-new-parks.png[MongoDB]

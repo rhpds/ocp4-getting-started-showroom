@@ -45,7 +45,7 @@ Java::
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks/master/pipeline/nationalparks-triggers.yaml+ -n %PROJECT%
+oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks/master/pipeline/nationalparks-triggers.yaml+ -n {ocp4_starter_project}
 ----
 --
 .NET::
@@ -54,7 +54,7 @@ oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-dotnet/master/Pipelines/nationalparks-triggers-all.yaml+ -n %PROJECT%
+oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-dotnet/master/Pipelines/nationalparks-triggers-all.yaml+ -n {ocp4_starter_project}
 ----
 --
 Javascript::
@@ -63,7 +63,7 @@ Javascript::
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-js/master/pipelines/nationalparks-triggers-all.yaml+ -n %PROJECT%
+oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-js/master/pipelines/nationalparks-triggers-all.yaml+ -n {ocp4_starter_project}
 ----
 --
 Python::
@@ -72,7 +72,7 @@ Python::
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-py/master/pipelines/nationalparks-triggers-all.yaml+ -n %PROJECT%
+oc create -f +https://raw.githubusercontent.com/openshift-roadshow/nationalparks-py/master/pipelines/nationalparks-triggers-all.yaml+ -n {ocp4_starter_project}
 ----
 --
 ====
@@ -122,7 +122,7 @@ Let's use a template to launch an Ngrok instance inside our project to link to o
 [.console-input]
 [source,bash,subs="+attributes"]
 ----
-oc new-app -f https://raw.githubusercontent.com/csrwng/ngrok/master/openshift/ngrok-template.yaml -p HOST=el-nationalparks -p PORT=8080 -n %PROJECT%
+oc new-app -f https://raw.githubusercontent.com/csrwng/ngrok/master/openshift/ngrok-template.yaml -p HOST=el-nationalparks -p PORT=8080 -n {ocp4_starter_project}
 ----
 
 You should see an output like this:
@@ -130,7 +130,7 @@ You should see an output like this:
 [.console-output]
 [source,bash,subs="+attributes"]
 ----
---> Deploying template "%PROJECT%/ngrok" for "https://raw.githubusercontent.com/csrwng/ngrok/master/openshift/ngrok-template.yaml" to project %PROJECT%
+--> Deploying template "{ocp4_starter_project}/ngrok" for "https://raw.githubusercontent.com/csrwng/ngrok/master/openshift/ngrok-template.yaml" to project {ocp4_starter_project}
 
      * With parameters:
         * Host=el-nationalparks
@@ -142,7 +142,7 @@ You should see an output like this:
     route.route.openshift.io "ngrok" created
     imagestream.image.openshift.io "ngrok" created
 --> Success
-    Access your application via route 'ngrok-%PROJECT%.%CLUSTER_SUBDOMAIN%' 
+    Access your application via route 'ngrok-{ocp4_starter_project}.{ocp4_starter_apps_domain}' 
     Run 'oc status' to view your app.
 ----
 
@@ -150,7 +150,7 @@ Get the Ngrok Route URL:
 [.console-input]
 [source,bash,subs="+attributes"]
 ----
-oc get route ngrok -n %PROJECT%
+oc get route ngrok -n {ocp4_starter_project}
 ----
 
 Open it in the browser to get the Ngrok tunnel URL that we can use and copy the HTTP URL you see in the webpage as shown below, this will be the one we will use to configure the Github Webhook.
@@ -162,7 +162,7 @@ Verify that it is working, when opening in the browser you should get the respon
 [.console-output]
 [source,bash,subs="+attributes"]
 ----
-{"eventListener":"nationalparks","namespace":"%PROJECT%","eventID":"vzkx5"}
+{"eventListener":"nationalparks","namespace":"{ocp4_starter_project}","eventID":"vzkx5"}
 ----
 
 --
@@ -364,7 +364,7 @@ oc get pipelineruns
 Once the build and deploy has finished, verify your new image was automatically deployed by viewing the application in your browser:
 
 
-link:https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/info/[National Parks Info Page,role='params-link',window='_blank']
+link:https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/[National Parks Info Page,role='params-link',window='_blank']
 
 
 You should now see the new name you have set in the JSON string returned.

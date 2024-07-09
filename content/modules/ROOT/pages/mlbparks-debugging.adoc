@@ -131,7 +131,7 @@ Set breakpoint com.openshift.evg.roadshow.rest.BackendController.get
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-curl http://mlbparks-workshop.%CLUSTER_SUBDOMAIN%/ws/info
+curl http://mlbparks-workshop.{ocp4_starter_apps_domain}/ws/info
 ----
 +
 . Your debugger should now be "breaked" at the first line of the `BackendController.get` method

@@ -76,7 +76,7 @@ image::devsandbox-forms_ok.png[Lab Guide OK]
 ROSA::
 +
 --
-Access your cluster from https://console-openshift-console.%CLUSTER_SUBDOMAIN%[OpenShift Web Console,role='params-link',window='_blank'].
+Access your cluster from https://console-openshift-console.{ocp4_starter_apps_domain}[OpenShift Web Console,role='params-link',window='_blank'].
 
 Login to your ROSA cluster using one of the available https://docs.openshift.com/rosa/rosa_getting_started/rosa-config-identity-providers.html[Identity Provider,window='_blank'].
 
@@ -87,16 +87,16 @@ On the Identity Provider login screen, enter the your credentials:
 
 *Username*:
 [source,role="copypaste"]
-%USERNAME%
+{ocp4_starter_username}
 
 *Password*:
 [source,role="copypaste"]
-%PASSWORD%
+{ocp4_starter_password}
 --
 ARO::
 +
 --
-Access your cluster from https://console-openshift-console.%CLUSTER_SUBDOMAIN%[OpenShift Web Console,role='params-link',window='_blank'].
+Access your cluster from https://console-openshift-console.{ocp4_starter_apps_domain}[OpenShift Web Console,role='params-link',window='_blank'].
 
 .Cluster administrator
 ****
@@ -141,11 +141,11 @@ Enter the your credentials:
 
 *Username*:
 [source,role="copypaste"]
-%USERNAME%
+{ocp4_starter_username}
 
 *Password*:
 [source,role="copypaste"]
-%PASSWORD%
+{ocp4_starter_password}
 --
 ROKS::
 +
@@ -159,11 +159,11 @@ Enter following credentials:
 
 *Username*:
 [source,role="copypaste"]
-%USERNAME%
+{ocp4_starter_username}
 
 *Password*:
 [source,role="copypaste"]
-%PASSWORD%
+{ocp4_starter_password}
 
 Click *Sign In*.
 
@@ -176,17 +176,17 @@ image::roks-login4.png[ROKS Open-shift web console]
 Others::
 +
 --
-To get a feel for how the web console works, click on this https://console-openshift-console.%CLUSTER_SUBDOMAIN%[Web Console,role='params-link',window='_blank'] link.
+To get a feel for how the web console works, click on this https://console-openshift-console.{ocp4_starter_apps_domain}[Web Console,role='params-link',window='_blank'] link.
 
 On the login screen, enter the following credentials:
 
 *Username*:
 [source,role="copypaste"]
-%USERNAME%
+{ocp4_starter_username}
 
 *Password*:
 [source,role="copypaste"]
-%PASSWORD%
+{ocp4_starter_password}
 --
 ====
 

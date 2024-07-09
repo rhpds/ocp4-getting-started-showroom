@@ -22,7 +22,7 @@ achieved.
 
 [#webhooks_with_openshift]
 == Exercise: Webhooks with OpenShift
-In this lab you can use a build webhook to trigger a build execution every time there is a change in your copy of the nationalparks GitHub repository. In the OpenShift web console, navigate to your **%PROJECT%** project, and then click to **Builds**. Click the `nationalparks` BuildConfig and then go to the **Webhooks** section.
+In this lab you can use a build webhook to trigger a build execution every time there is a change in your copy of the nationalparks GitHub repository. In the OpenShift web console, navigate to your **{ocp4_starter_project}** project, and then click to **Builds**. Click the `nationalparks` BuildConfig and then go to the **Webhooks** section.
 
 On this screen you will see the option to copy the GitHub webhook URL, click to **Copy URL with Secret** as shown in the following image:
 
@@ -289,7 +289,7 @@ oc get builds
 Once the build and deploy has finished, verify your new image was automatically deployed by viewing the application in your browser:
 
 
-link:https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/info/[National Parks Info Page,role='params-link',window='_blank']
+link:https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/[National Parks Info Page,role='params-link',window='_blank']
 
 You should now see the new name you have set in the JSON string returned.
 

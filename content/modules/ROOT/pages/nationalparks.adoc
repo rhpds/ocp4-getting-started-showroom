@@ -368,22 +368,22 @@ Where you should see something like the following:
 [source,bash,subs="+attributes,macros+"]
 ----
 NAME            HOST/PORT                                                   PATH      SERVICES        PORT       TERMINATION       WILDCARD
-nationalparks   nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%             nationalparks   8080-tcp        edge 
-parksmap        parksmap-%PROJECT%.%CLUSTER_SUBDOMAIN%                  parksmap        8080-tcp        edge        none
+nationalparks   nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}             nationalparks   8080-tcp        edge 
+parksmap        parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}                  parksmap        8080-tcp        edge        none
 ----
 
 In the above example, the URL is:
 
 [source,text,role="copypaste",subs="+attributes"]
 ----
-https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%
+https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}
 ----
 
 Since this is a backend application, it doesn't actually have a web interface.
 However, it can still be used with a browser. All backends that work with the parksmap
 frontend are required to implement a `/ws/info/` endpoint. To test, visit this URL in your browser:
 
-link:https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/info/[National Parks Info Page, role='params-link', window='_blank']
+link:https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/[National Parks Info Page, role='params-link', window='_blank']
 
 WARNING: If the Pod is Running and the application is not available, please wait a few seconds and refresh the page, since we haven't configured yet Health Checks for that.
 

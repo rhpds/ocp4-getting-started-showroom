@@ -78,7 +78,7 @@ oc whoami --show-server
 [.console-output]
 [source,bash,subs="+macros,+attributes"]
 ----
-https://%CLUSTER_SUBDOMAIN%:30713
+https://{ocp4_starter_apps_domain}:30713
 ----
 
 Once completed, you should be able to follow the commands as they are outlined below.
@@ -110,7 +110,7 @@ This is the REST endpoint that gives basic info on the service and can be reache
 
 [source,bash,role="copypaste",subs="+attributes"]
 ----
-http://mlbparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/info/
+http://mlbparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/
 ----
 
 Please change line 23 to add a _AMAZING_ in front of "MLB Parks" look like this:
@@ -152,7 +152,7 @@ You can follow the deployment in progress from Topology view, and when it is com
 
 [source,bash,role="copypaste",subs="+attributes"]
 ----
-http://mlbparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/info/
+http://mlbparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/
 ----
 
 So now you have seen how we can speed up the build and deploy process.
