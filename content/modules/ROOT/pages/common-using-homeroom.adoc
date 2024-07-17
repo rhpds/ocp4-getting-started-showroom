@@ -42,7 +42,7 @@ Click on this and you will see that it will send an interrupt to the command run
 
 At times, instead of running a command, you may need to copy the value and paste it into the terminal or other web page. This will be indicated using the copy symbol +++<span class="fas fa-copy"></span>+++.
 
-[source,text,role=copy]
+[source, shell, role=execute, subs=attributes]
 ----
 {ocp4_starter_username}
 ----

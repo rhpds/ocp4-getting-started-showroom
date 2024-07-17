@@ -86,11 +86,11 @@ image::explore-rosa-login.png[ROSA Login]
 On the Identity Provider login screen, enter the your credentials:
 
 *Username*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_username}
 
 *Password*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_password}
 --
 ARO::
@@ -140,11 +140,11 @@ image::explore-aro-login.png[ARO Login]
 Enter the your credentials:
 
 *Username*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_username}
 
 *Password*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_password}
 --
 ROKS::
@@ -158,11 +158,11 @@ Login to IBM Cloud, copy this link and open in your browser:
 Enter following credentials:
 
 *Username*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_username}
 
 *Password*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_password}
 
 Click *Sign In*.
@@ -181,11 +181,11 @@ To get a feel for how the web console works, click on this https://console-opens
 On the login screen, enter the following credentials:
 
 *Username*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_username}
 
 *Password*:
-[source,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 {ocp4_starter_password}
 --
 ====

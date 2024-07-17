@@ -21,7 +21,7 @@ link:http://gogs-%INFRA_PROJECT%.{ocp4_starter_apps_domain}/{ocp4_starter_userna
 
 Your Gogs credentials are:
 
-[source,bash]
+[source, shell, role=execute, subs=attributes]
 ----
 username: {ocp4_starter_username}
 password: %GOGS_PASSWORD%
@@ -96,7 +96,7 @@ oc get builds
 
 You should see that a new build is running:
 
-[source,bash]
+[source, shell, role=execute, subs=attributes]
 ----
 NAME              TYPE      FROM          STATUS     STARTED          DURATION
 nationalparks-1   Source    Git@b052ae6   Complete   18 hours ago     36s

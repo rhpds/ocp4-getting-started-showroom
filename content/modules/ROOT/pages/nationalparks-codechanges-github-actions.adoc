@@ -103,7 +103,7 @@ Review the follow workflow that will be used to trigger build of the Nationalpar
 Java::
 +
 --
-[source,yaml,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 ----
 name: OpenShift <1>
 
@@ -180,7 +180,7 @@ jobs:
 .NET::
 +
 --
-[source,yaml,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 ----
 name: OpenShift <1>
 
@@ -257,7 +257,7 @@ jobs:
 Javascript::
 +
 --
-[source,yaml,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 ----
 name: OpenShift <1>
 
@@ -334,7 +334,7 @@ jobs:
 Python::
 +
 --
-[source,yaml,role="copypaste"]
+[source, shell, role=execute, subs=attributes]
 ----
 name: OpenShift <1>
 

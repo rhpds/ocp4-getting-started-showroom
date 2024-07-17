@@ -68,7 +68,7 @@ link:http://gogs-%INFRA_PROJECT%.{ocp4_starter_apps_domain}/{ocp4_starter_userna
 
 Your Gogs credentials are:
 
-[source,bash]
+[source, shell, role=execute, subs=attributes]
 ----
 username: {ocp4_starter_username}
 password: %GOGS_PASSWORD%
@@ -101,7 +101,7 @@ image::nationalparks-php-new-php-service.png[Add PHP]
 Click on the *Create Application* button and then enter a name and a Git repository URL. For the name, enter `nationalparks`,
 and for the Git repository URL, enter:
 
-[source,role=copypaste]
+[source, shell, role=execute, subs=attributes]
 ----
 http://gogs-%INFRA_PROJECT%.{ocp4_starter_apps_domain}/{ocp4_starter_username}/nationalparks-php.git
 ----
