@@ -1,0 +1,404 @@
+= Nationalparks Backend App
+:navtitle: Nationalparks Backend App
+
+In this section, we're going to deploy a backend service, developed in either Java, .NET, NodeJS, or Python, that will expose 2 main REST endpoints to the visualizer
+application (`parksmap` web component that was deployed in the previous labs).
+The application will query for national parks information (including its
+coordinates) that is stored in a MongoDB database.  This application will also
+provide an external access point, so that the API provided can be directly used
+by the end user.
+
+image::roadshow-app-architecture-nationalparks-1.png[Application architecture,800,align="center"]
+
+[#source_to_image]
+== Background: Source-to-Image (S2I)
+
+In a previous lab, we learned how to deploy a pre-existing image
+image. Now we will expand on that by learning how OpenShift builds
+container images using source code from an existing repository.  This is accomplished using the Source-to-Image project.
+
+https://github.com/openshift/source-to-image[Source-to-Image (S2I)] is a
+open source project sponsored by Red Hat that has the following goal:
+
+[source]
+----
+Source-to-image (S2I) is a tool for building reproducible container images. S2I
+produces ready-to-run images by injecting source code into a container image and
+assembling a new container image which incorporates the builder image and built
+source. The result is then ready to use with docker run. S2I supports
+incremental builds which re-use previously downloaded dependencies, previously
+built artifacts, etc.
+----
+
+OpenShift is S2I-enabled and can use S2I as one of its build mechanisms (in
+addition to building container images from Dockerfiles, and "custom" builds).
+
+OpenShift runs the S2I process inside a special *Pod*, called a Build
+Pod, and thus builds are subject to quotas, limits, resource scheduling, and
+other aspects of OpenShift.
+
+A full discussion of S2I is beyond the scope of this class, but you can find
+more information about it either in the
+{openshift-docs-url}/openshift_images/create-images.html[OpenShift S2I documentation]
+or on https://github.com/openshift/source-to-image[GitHub]. The only key concept you need to
+remember about S2I is that it's magic.
+
+[#creating_a_application]
+== Exercise: Creating a backend application
+
+The backend service that we will be deploying as part of this exercise is
+called `nationalparks`.  This is an application that performs 2D
+geo-spatial queries against a MongoDB database to locate and return map
+coordinates of all National Parks in the world. That was just a fancy way of
+saying that we are going to deploy a webservice that returns a JSON list of
+places.
+
+[#add_to_project]
+=== Add to Project
+Because the `nationalparks` component is a backend to serve data that our
+existing frontend (parksmap) will consume, we are going to build it inside the existing
+project that we have been working with. To illustrate how you can interact with OpenShift via the CLI or the web console, we will deploy the nationalparks component using the web console.
+
+[#using_application_code_on_git_server]
+=== Using Application Code on Git Server
+
+OpenShift can work with any accessible Git repository. This could be GitHub,
+GitLab, or any other server that speaks Git. You can even register webhooks in
+your Git server to initiate OpenShift builds triggered by any update to the
+application code!
+
+Later in the lab, we want you to make a code change and then rebuild your
+application. Now, let's take a look at deploying a backend service.
+
+[#deploying_the_backend_service]
+=== Deploying the Backend Service
+
+[tabs, subs="attributes+,+macros"]
+====
+Java::
++
+--
+Similar to how we used *+Add* before with an existing image, we
+can do the same for specifying a source code repository. Since for this lab you
+have your own git repository, let's use it with a simple link:https://github.com/openshift-roadshow/nationalparks.git[Java] S2I image.
+
+In the Developer Perspective, click *+Add* in the left navigation, go to the *Git Repository* section and then choose *From Git* option.
+
+image::nationalparks-show-add-options.png[Add to Project]
+
+The *Import from Git* workflow will guide you through the process of deploying your app based on a few selections.
+
+Enter the following for Git Repo URL:
+
+[source,bash,role=copypaste]
+----
+https://github.com/openshift-roadshow/nationalparks.git
+----
+
+OpenShift will automatically guess the Git server type and the programming language used by the source code. You will be now asked to select an *Import Strategy*.
+
+Click *Edit Import Strategy*.
+
+image::nationalparks-import-strategy.png[Select Import Strategy]
+
+You have three options: 
+
+* *Devfile*: this will use link:https://devfile.io/docs/devfile/2.1.0/user-guide/index.html[Devfile v2] spec to create an application stack. The repo has to contain a file named `devfile.yaml` in the Devfile v2 format .
+* *Dockerfile*: this will create a Container image from an existing Dockerfile. 
+* *Builder Image*: this will use a mechanism called Source-to-Image to create automatically a container image directly from the source code.
+
+Select *Build Image* as we are going to create the container image from the source code, as discussed in the next section.
+
+image::nationalparks-import-strategy-build.png[Select Import Strategy]
+
+
+TIP: You could also use Dockerfile, the repo contains a multi-stage Dockerfile. For this exercise, we want to show the Build Image feature.
+
+
+Verify that *Java* has been selected as your Builder Image, and be sure to select version *openjdk-11-ubi8* to have OpenJDK 11.
+--
+.NET::
++
+--
+Similar to how we used *+Add* before with an existing image, we
+can do the same for specifying a source code repository. Since for this lab you
+have your own git repository, let's use it with a simple link:https://github.com/openshift-roadshow/nationalparks-dotnet.git[.NET] S2I image.
+
+In the Developer Perspective, click *+Add* in the left navigation, go to the *Git Repository* section and then choose *From Git* option.
+
+image::nationalparks-show-add-options.png[Add to Project]
+
+The *Import from Git* workflow will guide you through the process of deploying your app based on a few selections.
+
+Enter the following for Git Repo URL:
+
+[source,bash,role=copypaste]
+----
+https://github.com/openshift-roadshow/nationalparks-dotnet.git
+----
+
+OpenShift will automatically guess the Git server type and the programming language used by the source code. You will be now asked to select an *Import Strategy*.
+
+Click *Edit Import Strategy*.
+
+image::nationalparks-import-strategy.png[Select Import Strategy]
+
+You have three options: 
+
+* *Devfile*: this will use link:https://devfile.io/docs/devfile/2.1.0/user-guide/index.html[Devfile v2] spec to create an application stack. The repo has to contain a file named `devfile.yaml` in the Devfile v2 format .
+* *Dockerfile*: this will create a Container image from an existing Dockerfile. 
+* *Builder Image*: this will use a mechanism called Source-to-Image to create automatically a container image directly from the source code.
+
+Select *Build Image* as we are going to create the container image from the source code, as discussed in the next section.
+
+image::nationalparks-import-from-git-url-builder-dotnet.png[Import from Git]
+
+Select *.NET Core* as your Builder Image, and be sure to select *3.1-el7* to run .NET Core 3.1 applications on a RHEL 7 image.
+--
+Javascript::
++
+--
+Similar to how we used *+Add* before with an existing image, we
+can do the same for specifying a source code repository. Since for this lab you
+have your own git repository, let's use it with a simple link:https://github.com/openshift-roadshow/nationalparks-js.git[NodeJS] S2I image.
+
+In the Developer Perspective, click *+Add* in the left navigation, go to the *Git Repository* section and then choose *From Git* option.
+
+image::nationalparks-show-add-options.png[Add to Project]
+
+The *Import from Git* workflow will guide you through the process of deploying your app based on a few selections.
+
+Enter the following for Git Repo URL:
+
+[source,bash,role=copypaste]
+----
+https://github.com/openshift-roadshow/nationalparks-js.git
+----
+
+OpenShift will automatically guess the Git server type and the programming language used by the source code. You will be now asked to select an *Import Strategy*.
+
+Click *Edit Import Strategy*.
+
+image::nationalparks-import-strategy.png[Select Import Strategy]
+
+You have three options: 
+
+* *Devfile*: this will use link:https://devfile.io/docs/devfile/2.1.0/user-guide/index.html[Devfile v2] spec to create an application stack. The repo has to contain a file named `devfile.yaml` in the Devfile v2 format .
+* *Dockerfile*: this will create a Container image from an existing Dockerfile. 
+* *Builder Image*: this will use a mechanism called Source-to-Image to create automatically a container image directly from the source code.
+
+Select *Build Image* as we are going to create the container image from the source code, as discussed in the next section.
+
+image::nationalparks-import-from-git-url-builder-js.png[Import from Git]
+
+Select *NodeJS* as your Builder Image, and be sure to select *14-ubi8* for this lab.
+--
+Python::
++
+--
+Similar to how we used *+Add* before with an existing image, we
+can do the same for specifying a source code repository. Since for this lab you
+have your own git repository, let's use it with a simple link:https://github.com/openshift-roadshow/nationalparks-py.git[Python] S2I image.
+
+In the Developer Perspective, click *+Add* in the left navigation, go to the *Git Repository* section and then choose *From Git* option.
+
+image::nationalparks-show-add-options.png[Add to Project]
+
+The *Import from Git* workflow will guide you through the process of deploying your app based on a few selections.
+
+Enter the following for Git Repo URL:
+
+[source,bash,role=copypaste]
+----
+https://github.com/openshift-roadshow/nationalparks-py.git
+----
+
+OpenShift will automatically guess the Git server type and the programming language used by the source code. You will be now asked to select an *Import Strategy*.
+
+Click *Edit Import Strategy*.
+
+image::nationalparks-import-strategy.png[Select Import Strategy]
+
+You have three options: 
+
+* *Devfile*: this will use link:https://devfile.io/docs/devfile/2.1.0/user-guide/index.html[Devfile v2] spec to create an application stack. The repo has to contain a file named `devfile.yaml` in the Devfile v2 format .
+* *Dockerfile*: this will create a Container image from an existing Dockerfile. 
+* *Builder Image*: this will use a mechanism called Source-to-Image to create automatically a container image directly from the source code.
+
+Select *Build Image* as we are going to create the container image from the source code, as discussed in the next section.
+
+image::nationalparks-import-from-git-url-builder-py.png[Import from Git]
+
+Select *Python* as your Builder Image, and be sure to select *3.8-ubi7* for this lab.
+--
+====
+
+
+
+Scroll down to the *General* section. Add the following:
+
+*Application Name* :
+[source,role=copypaste]
+----
+workshop
+----
+
+*Name* :
+[source,role=copypaste]
+----
+nationalparks
+----
+
+In *Resources* section, select *Deployment*.
+
+NOTE: If present, leave Pipeline section empty here as we will implement it in the next modules
+
+Under *Advanced Options*, ensure *Create a route* is *checked* here.
+
+We are going to create another *Secure Route*, this time directly from this view.
+
+Click *Show advanced Routing options*. 
+
+Leave all default options, go under *Security* section.
+
+Check *Secure Route* option.
+
+Under *TLS termination*, select *Edge*.
+
+Scroll down and expand the *Labels* section to add 3 labels.
+
+The name of the Application group:
+
+[source,role=copypaste]
+----
+app=workshop
+----
+
+Next the name of this deployment.
+
+[source,role=copypaste]
+----
+component=nationalparks
+----
+
+And finally, the role this component plays in the overall application.
+
+[source,role=copypaste]
+----
+role=backend
+----
+
+Click *Create* to submit.
+
+image::nationalparks-configure-service1.png[Select Builder]
+
+image::nationalparks-configure-service2.png[Advanced Options]
+
+image::nationalparks-configure-service3.png[Secure Route]
+
+image::nationalparks-configure-service4.png[Label]
+
+[#monitoring-the-build]
+=== Monitoring the Build
+
+To see the build logs, in Topology view, click the `nationalparks` entry, then click on *View Logs* in the *Builds* section of the *Resources* tab.
+
+image::nationalparks-java-new-java-build.png[Nationalparks build]
+
+Based on the application's language, the build process will be different. However, the initial build will take a few minutes as the dependencies are downloaded. You can see all of this happening in real time!
+
+From the command line, you can also see the *Builds*:
+
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc get builds
+----
+
+You'll see output like:
+
+[.console-output]
+[source,bash]
+----
+NAME              TYPE      FROM          STATUS     STARTED              DURATION
+nationalparks-1   Source    Git@b052ae6   Running    About a minute ago   1m2s
+----
+
+You can also view the build logs with the following command:
+
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc logs -f builds/nationalparks-1
+----
+
+After the build has completed and successfully:
+
+* The S2I process will push the resulting image to the internal OpenShift registry
+* The *Deployment* (D) will detect that the image has changed, and this
+  will cause a new deployment to happen.
+* A *ReplicaSet* (RS) will be spawned for this new deployment.
+* The RS will detect no *Pods* are running and will cause one to be deployed, as our default replica count is just 1.
+
+In the end, when issuing the `oc get pods` command, you will see that the build Pod
+has finished (exited) and that an application *Pod* is in a ready and running state:
+
+[.console-output]
+[source,bash]
+----
+NAME                    READY     STATUS      RESTARTS   AGE
+nationalparks-1-tkid3   1/1       Running     3          2m
+nationalparks-1-build   0/1       Completed   0          3m
+parksmap-57df75c46d-xltcs        1/1       Running     0          2h
+----
+
+If you look again at the web console, you will notice that, when you create the
+application this way, OpenShift also creates a *Route* for you. You can see the
+URL in the web console, or via the command line:
+
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc get routes
+----
+
+Where you should see something like the following:
+
+[.console-output]
+[source,bash,subs="+attributes,macros+"]
+----
+NAME            HOST/PORT                                                   PATH      SERVICES        PORT       TERMINATION       WILDCARD
+nationalparks   nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}             nationalparks   8080-tcp        edge 
+parksmap        parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}                  parksmap        8080-tcp        edge        none
+----
+
+In the above example, the URL is:
+
+[source,text,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}
+----
+
+Since this is a backend application, it doesn't actually have a web interface.
+However, it can still be used with a browser. All backends that work with the parksmap
+frontend are required to implement a `/ws/info/` endpoint. To test, visit this URL in your browser:
+
+link:https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/info/[National Parks Info Page, role='params-link', window='_blank']
+
+WARNING: If the Pod is Running and the application is not available, please wait a few seconds and refresh the page, since we haven't configured yet Health Checks for that.
+
+You will see a simple JSON string:
+
+[source,json]
+----
+{"id":"nationalparks","displayName":"National Parks","center":{"latitude":"47.039304","longitude":"14.505178"},"zoom":4}
+----
+
+Earlier we said:
+
+[source,bash]
+----
+This is an application that performs 2D geo-spatial queries against a MongoDB database
+----
+
+But we don't have a database. Yet.

@@ -1,0 +1,15 @@
+name: rhs-openshift-starter-guides
+title: OpenShift Starter Guides
+version: 4.11
+nav:
+  - modules/ROOT/nav.adoc
+
+start_page: ROOT:index.adoc
+
+asciidoc:
+  attributes:
+    "ocp4_starter_console_url": "https://console-openshift-console.apps.example.com"
+    "ocp4_starter_apps_domain": "apps.example.com"
+    "ocp4_starter_username": "userX"
+    "ocp4_starter_password": "openshift"
+    "ocp4_starter_project": "userX-workshop"

@@ -1,0 +1,99 @@
+= Permissions
+:navtitle: Permissions
+
+Almost every interaction with an OpenShift environment that you can think of
+requires going through the OpenShift's control plane API. All API interactions are both authenticated (AuthN - who are you?) and authorized (AuthZ - are you allowed to do what you are asking?).
+
+In the log aggregation lab we saw that there was an
+error in reference to a *Service Account*.
+
+As OpenShift is a declarative platform, some actions will be performed by the platform and not by the end user (when he or she issues a command). These actions are performed using a *Service Account* which is a special type of `user` that the platform will use internally.
+
+OpenShift automatically creates a few special service accounts in every project.
+The **default** service account is the one taking the responsibility of running the pods, and OpenShift uses and injects this service account into
+every pod that is launched. By changing the permissions for that service
+account, we can do interesting things.
+
+You can view current permissions in the web console, go to the Topology view in the Developer Perspective, click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
+
+image::parksmap-permissions-namespace.png[Namespace]
+
+Then, select *Role Bindings* tab and filter by *Namespace Role Binding* so see all permissions for selected project.
+
+image::parksmap-permissions-membership.png[Membership]
+
+[#grant_serviceaccount_view_permissions]
+== Exercise: Grant Service Account View Permissions
+The parksmap application wants to talk to the OpenShift API to learn about other
+*Pods*, *Services*, and resources within the *Project*. You'll soon learn why!
+
+The parksmap application runs as a *Service Account* in our project on the cluster: namely the `default` *Service Account*. It is to this *Service Account* that we can grant the necessary `view` access that will allow it to query the API to see what resources are within the *Project*. This also has the added benefit of addressing the cause of the error message we witnessed previously in the logs.
+
+Choose an approach represented by the following tabs to update the `default` *Service Account* in the `{ocp4_starter_project}` project
+
+[tabs]
+====
+OpenShift Console::
++
+--
+. From the *Workloads -> Deployments* page, click on the *Namespace*, then *Role Bindings* and then the *Create Binding* button.
++
+image::parksmap-permissions-membership-serviceaccount-list.png[Service account list]
++
+. Select *view* for the Role Binding Name *{ocp4_starter_project}* for the Namespace, *view* for the Role Name, *Service Account* for the Subject, *{ocp4_starter_project}* for the Subject Namespace, and *default* for the Subject Name.
++
+image::parksmap-permissions-membership-serviceaccount-edit.png[Service account edit]
++
+. Once you're finished editing permissions, click on the *Create* button.  You should then be able to see it on the `Role Bindings` list for the `{ocp4_starter_project}` project`
++
+image::parksmap-permissions-membership-serviceaccount-done.png[Service account changed]
+--
+`oc` Command Line::
++
+--
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc project {ocp4_starter_project}
+----
+
+Then use the `oc policy add-role-to-user` command to give the predefined `view` _role_ to the user:
+
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc policy add-role-to-user view -z default
+----
+
+.What does the `-z` flag do?
+****
+From the `-h` output on `oc policy`:
+
+[source,bash]
+----
+-z, --serviceaccount=[]: service account in the current namespace to use as a user
+----
+
+The `-z` syntax is a special one that saves us from having to type out the
+entire string, which, in this case, is
+`system:serviceaccount:{ocp4_starter_project}:default`. It's a nifty shortcut.
+****
+
+NOTE: The `-z` flag will only work for service accounts in the *current* project.  If you're referring to a service account in a different project, use the `-n <project>`switch.
+--
+====
+
+[#redeploy_application]
+== Exercise: Redeploy Application
+
+[.console-input]
+[source,bash,subs="+attributes,macros+"]
+----
+oc rollout restart deployment/parksmap
+----
+
+A new deployment is immediately started. Return to Topology view and click the `parksmap` entry again to watch it happen. You might not be fast enough! But it will be reflected in the *ReplicaSet* number.
+
+image::parksmap-permissions-redeployed.png[Application deployed]
+
+If you look at the logs for the application now, you should see no errors.  That's great.

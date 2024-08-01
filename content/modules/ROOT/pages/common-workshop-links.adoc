@@ -1,0 +1,23 @@
+= Workshop Links
+:navtitle: Workshop Links
+
+You can find all urls, hostnames, usernames and passwords that are needed during the workshop in this page. Note that the urls are also embedded inside the labs so that you don't have to go back and forth between this page and the labs.
+
+[#openshift_cluster_url]
+== OpenShift Cluster URL
+
+Console Address: https://console-openshift-console.{ocp4_starter_apps_domain} +
+
+Username: {ocp4_starter_username} + 
+Password: {ocp4_starter_password} +
+
+
+[#workshop_guides]
+== Workshop Guides
+
+Web: link:https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/index.html[Starter Guides,window='_blank']
+
+[#git_server]
+== Git Server
+
+Web: link:https://github.com[GitHub,window='_blank']

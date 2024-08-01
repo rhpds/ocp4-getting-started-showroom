@@ -46,3 +46,5 @@ node_modules
 
 # for local testing/publishing of content
 stage-*-site.yml
+
+www/
