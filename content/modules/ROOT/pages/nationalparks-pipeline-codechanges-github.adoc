@@ -1,6 +1,8 @@
 = Automation with Pipelines
 :navtitle: Automation with Pipelines
 
+include::vars.adoc[]
+
 In addition to the OpenShift built-in components, OpenShift Pipelines provide additional triggers and automation to pipelines thanks to **https://tekton.dev/docs/triggers/[Tekton Triggers]**.
 
 // [#prerequisite_github_account]

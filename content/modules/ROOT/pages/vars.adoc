@@ -1,0 +1,5 @@
+:ocp4_starter_console_url: {openshift_console_url}
+:ocp4_starter_apps_domain: {openshift_cluster_ingress_domain}
+:ocp4_starter_username: {user}
+:ocp4_starter_password: {password}
+:ocp4_starter_project: {user}-wksp

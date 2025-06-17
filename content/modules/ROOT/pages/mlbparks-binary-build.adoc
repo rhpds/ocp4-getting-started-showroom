@@ -1,6 +1,8 @@
 = Binary Builds
 :navtitle: Binary Builds
 
+include::vars.adoc[]
+
 [#moving_on_from_s2i]
 == Moving on From S2I
 As you saw before S2I is a great way to get from source code to a container, but the process is a bit too slow for daily fast iterative

@@ -1,6 +1,8 @@
 = OpenShift Architecture
 :navtitle: OpenShift Architecture
 
+include::vars.adoc[]
+
 image::common-environment-ocp-architecture.png[OpenShift Architecture]
 
 The workshop is hosted in an OpenShift environment that is running on a

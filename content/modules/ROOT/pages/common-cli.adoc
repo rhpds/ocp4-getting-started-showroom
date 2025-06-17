@@ -1,6 +1,8 @@
 = Command Line Interface
 :navtitle: Command Line Interface
 
+include::vars.adoc[]
+
 OpenShift ships with a feature rich web console as well as command line tools
 to provide users with a nice interface to work with applications deployed to the
 platform.  The OpenShift tools are a single executable written in the Go

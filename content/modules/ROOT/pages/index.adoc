@@ -4,6 +4,8 @@ ifndef::lab[]
 :lab-name: Java
 endif::[]
 
+include::vars.adoc[]
+
 image::openshift-logo.png[OpenShift Logo, 400]
 
 == What is OpenShift?

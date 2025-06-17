@@ -8,8 +8,7 @@ start_page: ROOT:index.adoc
 
 asciidoc:
   attributes:
-    "ocp4_starter_console_url": "https://console-openshift-console.apps.example.com"
-    "ocp4_starter_apps_domain": "apps.example.com"
-    "ocp4_starter_username": "userX"
-    "ocp4_starter_password": "openshift"
-    "ocp4_starter_project": "userX-workshop"
+    openshift_console_url: https://console-cluster.example.com
+    openshift_cluster_ingress_domain: apps.cluster.example.com
+    user: user1
+    password: openshift 

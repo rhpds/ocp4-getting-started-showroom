@@ -1,6 +1,8 @@
 = Permissions
 :navtitle: Permissions
 
+include::vars.adoc[]
+
 Almost every interaction with an OpenShift environment that you can think of
 requires going through the OpenShift's control plane API. All API interactions are both authenticated (AuthN - who are you?) and authorized (AuthZ - are you allowed to do what you are asking?).
 

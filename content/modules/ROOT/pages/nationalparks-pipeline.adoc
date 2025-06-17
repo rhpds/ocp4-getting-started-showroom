@@ -1,6 +1,8 @@
 = Continuous Integration and Pipelines
 :navtitle: Continuous Integration and Pipelines
 
+include::vars.adoc[]
+
 In this lab you will learn about pipelines and how to configure a pipeline in OpenShift so
 that it will take care of the application lifecycle.
 

@@ -1,6 +1,8 @@
 = Prerequisites
 :navtitle: Prerequisites
 
+include::vars.adoc[]
+
 In order to run the lab in your cluster, you need to meet the requirements discussed below.
 
 [cols="2*^,2*.",options="header,+attributes"]

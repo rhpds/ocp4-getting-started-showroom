@@ -1,6 +1,8 @@
 = Using Homeroom
 :navtitle: Using Homeroom
 
+include::vars.adoc[]
+
 Access to the workshop is provided by link:https://github.com/openshift-homeroom[Homeroom], an interactive training environment you can use in your web browser without needing to install anything on your local machine.
 
 == How to use Homeroom

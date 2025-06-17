@@ -1,6 +1,8 @@
 = Connecting to a Database
 :navtitle: Connecting to a Database
 
+include::vars.adoc[]
+
 In this section we will deploy and connect a MongoDB database where the
 `nationalparks` application will store location information.
 

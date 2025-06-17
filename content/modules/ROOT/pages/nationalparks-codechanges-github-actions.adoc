@@ -1,6 +1,8 @@
 = GitHub Actions with OpenShift
 :navtitle: GitHub Actions with OpenShift
 
+include::vars.adoc[]
+
 OpenShift includes comprehensive features for automation in-cluster as seen in xref:nationalparks-{lab}-codechanges-github.adoc[Webhooks with OpenShift] and as you will see in the next chapter xref:nationalparks-{lab}-pipeline.adoc[Continuous Integration and Pipelines]. In addition to that, it provides great interoperability and integrations for external CI/CD systems such as Jenkins, GitLab, Azure DevOps and *GitHub Actions*.
 
 image::openshift-cicd-integrations.png[OpenShift CI/CD Offering]

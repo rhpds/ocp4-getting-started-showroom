@@ -1,6 +1,8 @@
 = Overview
 :navtitle: Overview
 
+include::vars.adoc[]
+
 This workshop is intended to give you a hands on introduction to using OpenShift from the perspective of a developer.
 
 Topics which this workshop will cover include:

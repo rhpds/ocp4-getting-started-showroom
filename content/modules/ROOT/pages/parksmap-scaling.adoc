@@ -1,6 +1,8 @@
 = Scaling Apps
 :navtitle: Scaling Apps
 
+include::vars.adoc[]
+
 [#deployments_and_replication_controllers]
 == Background: Deployments and ReplicaSets
 

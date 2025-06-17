@@ -1,6 +1,8 @@
 = Logging
 :navtitle: Logging
 
+include::vars.adoc[]
+
 OpenShift provides some convenient mechanisms for viewing application logs.
 First and foremost is the ability to examine a *Pod*'s logs directly from the
 web console or via the command line.

@@ -1,6 +1,8 @@
 = MLBParks App
 :navtitle: MLBParks App
 
+include::vars.adoc[]
+
 In this lab, we're going to deploy a complete backend application, consisting of
 a REST API backend and a MongoDB database. The complete application will already
 be wired together and described as a backend for the map visualization tool, so

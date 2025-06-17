@@ -1,5 +1,7 @@
 == JBoss EAP Clustering
 
+include::vars.adoc[]
+
 Clustering in JBoss EAP is achieved using the Kubernetes discovery mechanism for
 finding other JBoss EAP containers and forming a cluster. This is done by
 configuring the JGroups protocol stack in `standalone-openshift.xml` with
