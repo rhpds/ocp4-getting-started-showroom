@@ -2,4 +2,4 @@
 :ocp4_starter_apps_domain: {openshift_cluster_ingress_domain}
 :ocp4_starter_username: {user}
 :ocp4_starter_password: {password}
-:ocp4_starter_project: {user}-wksp
+:ocp4_starter_project: wksp-{user}
