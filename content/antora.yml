@@ -1,5 +1,5 @@
-name: rhs-openshift-starter-guides
-title: OpenShift Starter Guides
+name: modules
+title: OCP4 Getting Started Workshop
 version: 4.11
 nav:
   - modules/ROOT/nav.adoc
@@ -12,3 +12,18 @@ asciidoc:
     openshift_cluster_ingress_domain: apps.cluster.example.com
     user: user1
     password: openshift 
+
+    experimental: true
+    parksmap-version: latest
+    parksmap-image: quay.io/openshiftroadshow/parksmap
+    openshift-docs-url: https://docs.openshift.com/container-platform/4.11
+    openshift-version: 4.11
+    project-namespace: workshop
+    release-version: roks
+    roks-login-url: https://cloud.ibm.com/authorize/devcluster
+    page-pagination: true
+    lab: java
+    lab-name: Java
+  extensions:
+    - ./lib/tab-block.js
+    - ./lib/remote-include-processor.js

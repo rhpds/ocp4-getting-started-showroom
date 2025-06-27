@@ -17,7 +17,7 @@ Password: {ocp4_starter_password} +
 [#workshop_guides]
 == Workshop Guides
 
-Web: link:https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/index.html[Starter Guides,window='_blank']
+Web: link:https://redhat-scholars.github.io/openshift-starter-guides/modules/index.html[Starter Guides,window='_blank']
 
 [#git_server]
 == Git Server
