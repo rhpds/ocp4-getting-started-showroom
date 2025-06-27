@@ -8,11 +8,8 @@ image::common-environment-ocp-architecture.png[OpenShift Architecture]
 The workshop is hosted in an OpenShift environment that is running on a
 public cloud. The environment consists of the following systems:
 
-* Master node(s)
+* Control plane node(s)
 * Worker or "application" nodes
 * Dynamic Provisioned Storage
 * Private Container Registry
 * Routing Layer
-
-
-
