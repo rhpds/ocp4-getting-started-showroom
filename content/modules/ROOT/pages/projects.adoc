@@ -38,8 +38,7 @@ You can also interact with your project using the command line.
 
 In your web terminal, switch to your project using the following command:
 
-[.console-input]
-[source,shell,subs="attributes",role="execute"]
+[source,role="copypaste",subs="attributes"]
 ----
 oc project {ocp4_starter_project}
 ----
@@ -47,7 +46,7 @@ oc project {ocp4_starter_project}
 You should see output similar to the following:
 
 [.console-output]
-[source,shell,subs="attributes"]
+[source,subs="attributes"]
 ----
 Now using project "{ocp4_starter_project}" on server "{ocp4_starter_api_url}"
 ----

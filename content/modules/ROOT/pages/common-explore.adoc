@@ -30,7 +30,7 @@ image::openshift-console-dashboard.png[link="self",window=_blank]
 You can also log in to OpenShift using the command-line interface (CLI). Use the following command, replacing the values with your credentials:
 
 
-[source,shell,subs="attributes",role="execute"]
+[source,role="copypaste",subs="attributes"]
 ----
 {ocp4_starter_login}
 ----
@@ -52,8 +52,7 @@ programming language and is available for the following operating systems:
 In your web terminal, you have the OpenShift CLI available as you have already logged in to the cluster.
 You can verify it by checking the version of the OpenShift CLI:
 
-[.console-input]
-[source,shell,subs="attributes",role="execute"]
+[source,role="copypaste",subs="attributes"]
 ----
 oc version
 ----
@@ -61,7 +60,7 @@ oc version
 You should see the following (or something similar):
 
 [.console-output]
-[source,shell,subs="attributes"]
+[source,subs="attributes"]
 ----
 Client Version: {ocp4_starter_cli_version}
 Server Version: {ocp4_starter_server_version}
@@ -69,27 +68,25 @@ Kubernetes Version: {ocp4_starter_k8s_version}
 ----
 
 You can also verify if you have correctly logged in to the OpenShift cluster.
-[.console-input]
-[source,shell,subs="attributes",role="execute"]
+[source,role="copypaste",subs="attributes"]
 ----
 oc whoami
 ----
 
 [.console-output]
-[source,shell,subs="attributes"]
+[source,subs="attributes"]
 ----
 {ocp4_starter_username}
 ----
 
 Finally, verify that you've got the correct project(s) assigned to you:
-[.console-input]
-[source,shell,subs="attributes",role="execute"]
+[source,role="copypaste",subs="attributes"]
 ----
 oc projects
 ----
 
 [.console-output]
-[source,shell,subs="attributes"]
+[source,subs="attributes"]
 ----
 You have one project on this server: "Workspace ({ocp4_starter_project})".
 
