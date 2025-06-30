@@ -14,47 +14,42 @@ During this lab, we are going to use a few different commands to make sure that
 things in the environment are working as expected.  Don't worry if you don't
 understand all of the terminology as we will cover it in detail in later labs.
 
-[#create_your_first_project]
-== Create your first Project
+== Your First Project
 
-NOTE: If you are using link:https://developers.redhat.com/developer-sandbox[Developer Sandbox for OpenShift], a project has been already created for you and you can *skip* this chapter.
+A project named *{ocp4_starter_project}* has already been created for you.
 
-Create a project named *{ocp4_starter_project}*. Within the **Administrator** perspective, from left-side menu click to *Projects*, then from top-right click
-to *Create Project*.
+After logging in to the OpenShift web console, locate and select this project. Take a moment to explore the project overview.
 
-From the form, insert the name of your project *{ocp4_starter_project}* and click to *Create*.
+[.bordershadow]
+image::openshift-console-project.png[link="self",window=_blank]
 
-image::prerequisites_create_project.png[Create Project]
+Familiarize yourself with the Topology perspective. The Topology view offers a visual representation of the applications and their components within your project.
 
-If you had multiple projects, the first thing you would want to do is to switch
-to the *{ocp4_starter_project}* project to make sure you're on the correct project from now on.
+From the left menu, navigate to *Workloads* and then to *Topology*.
 
-image::explore-webconsole2.png[Explore Project]
+At this stage, you will not see any applications or components. As you progress through the lab, you will be able to visualize and interact with your application's components in the *Topology* view.
 
-At the top of the left navigation menu, you can toggle between the *Administrator* perspective and the *Developer* perspective.
+[.bordershadow]
+image::openshift-console-topology.png[link="self",window=_blank]
 
-image::explore-perspective-toggle.png[Toggle Between Perspectives]
+== Switching to Your Project in the CLI
 
-Select *Developer* to switch to the Developer perspective. Once the Developer perspective loads, you should be in the *+Add* view.
+You can also interact with your project using the command line.
 
-image::explore-add-application.png[Add New Applications]
-
-Right now, there are no applications or components to view, but once you begin working on the lab, you'll be able to visualize and interact with the components in your application in the *Topology* view.
-
-You can also create and manage project from the CLI as well. Let's use our newly created project {ocp4_starter_project} as our default one:
+In your web terminal, switch to your project using the following command:
 
 [.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,shell,subs="attributes",role="execute"]
 ----
 oc project {ocp4_starter_project}
 ----
 
-You should an output similar to the following:
+You should see output similar to the following:
 
 [.console-output]
-[source,bash,subs="+attributes,macros+"]
+[source,shell,subs="attributes"]
 ----
-Now using project "{ocp4_starter_project}" on server "https://api.{ocp4_starter_apps_domain}:6443"
+Now using project "{ocp4_starter_project}" on server "{ocp4_starter_api_url}"
 ----
 
 We will be using a mix of command line tooling and the web console for the labs.
