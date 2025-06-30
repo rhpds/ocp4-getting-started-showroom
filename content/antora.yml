@@ -8,10 +8,11 @@ start_page: ROOT:index.adoc
 
 asciidoc:
   attributes:
-    openshift_console_url: https://console-cluster.example.com
+    openshift_console_url: https://console.apps.cluster.example.com
     openshift_cluster_ingress_domain: apps.cluster.example.com
-    user: user1
-    password: openshift 
+    user: userX
+    password: password
+    login_command: oc login --insecure-skip-tls-verify=false -u userX -p password https://api.cluster.example.com:6443
 
     experimental: true
     parksmap-version: latest
