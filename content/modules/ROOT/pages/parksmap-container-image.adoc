@@ -5,38 +5,38 @@ include::vars.adoc[]
 
 In this lab, we're going to deploy the web component of the ParksMap application which is also called `parksmap` and uses OpenShift's service discovery mechanism to discover the backend services deployed and shows their data on the map.
 
-image::roadshow-app-architecture-parksmap-1.png[Application architecture,800,align="center"]
+[.bordershadow]
+image::roadshow-app-architecture-parksmap-1.png[link="self",window=_blank]
 
 [#deploy_your_first_image]
 == Exercise: Deploying your First Image
 
 Let's start by doing the simplest thing possible - get a plain old
-Docker-formatted image to run on OpenShift. This is incredibly simple to do.
+Docker - formatted image to run on OpenShift. This is incredibly simple to do.
 With OpenShift it can be done directly from the web console.
 
-Return to the https://console-openshift-console.{ocp4_starter_apps_domain}/k8s/cluster/projects[Web Console, role='params-link', window='_blank'].
+Get back to the {ocp4_starter_console_url}/topology/ns/{ocp4_starter_project}[topology view, link="self",window=_blank] (in the *{ocp4_starter_project}* project).
 
-If you're no longer on the Developer perspective, return there now. 
+At the top left, click the *+* icon. You will see a menu where you have multiple options to deploy application to OpenShift. Click *Container images* to open a dialog that will allow you to specify the information for the image you want to deploy.
 
-From the left menu, click *+Add*. You will see a screen where you have multiple options to deploy application to OpenShift. Click *Container Image* to open a dialog that will allow you to specify the information for the image you want to deploy.
-
-image::parksmap-devconsole-container-image.png[Add from Container Image]
+[.bordershadow]
+image::openshift-console-add-container.png[link="self",window=_blank]
 
 In the *Image Name* field, copy/paste the following into the box:
 
-
-[source,role=copypaste,subs="+macros,+attributes"]
+[source,role="copypaste",subs="attributes"]
 ----
-{parksmap-image}:{parksmap-version}
+{ocp4_starter_parksmap_image}
 ----
 
 OpenShift will then go out to the container registry specified and interrogate the image.
 
 Your screen will end up looking something like this:
 
-image::parksmap-image.png[Explore Project]
+[.bordershadow]
+image::parksmap-image.png[link="self",window=_blank]
 
-In *Runtime Icon* you can select the icon to use in OpenShift Topology View for the app. You can leave the default OpenShift icon, or since this Frontend is made with Spring Boot, you can pick *spring-boot*.
+In *Runtime Icon* you can select the icon to use in OpenShift Topology View for the app. You could leave the default OpenShift icon, but since this Frontend is made with Spring Boot, you can pick *spring-boot*.
 
 Make sure to have the correct values in:
 
@@ -52,15 +52,15 @@ workshop
 parksmap
 ----
 
-Ensure *Deployment* is selected from *Resource* section.
+Ensure *Deployment* is selected from *Resource type* section.
 
 NOTE: We will discuss in details about *Deployment* and *DeploymentConfig* in next chapters.
 
-*Un-check* the checkbox next to *Create a route to the application*. For learning purposes, we will create a *Route* for the application later in the workshop.
+*Un-check* the checkbox next to *Create a route* under *"Advanced options"*. For learning purposes, we will create a *Route* for the application later in the workshop.
 
 At the bottom of the page, click *Labels* in the Advanced Options section and add some labels to better identify this deployment later. Labels will help us identify and filter components in the web console and in the command line.
 
-We will add 3 labels. After you enter the name=value pair for each label, press kbd:[Return] (or kbd:[Enter] depending on your keyboard) before typing the next. The first label that we'll enter  is the name to be given to the application.
+We will add 3 labels. After you enter the name=value pair for each label, press kbd:[Return] (or kbd:[Enter] depending on your keyboard) before typing the next. The first label that we'll enter is the name to be given to the application.
 
 [source,role=copypaste]
 ----
@@ -81,12 +81,16 @@ And finally, the role this component plays in the overall application.
 role=frontend
 ----
 
-image::parksmap-image-options.png[Deploy image]
-image::parksmap-advanced-image-options.png[Deploy image]
+[.bordershadow]
+image::parksmap-image-options.png[width=600,link="self",window=_blank]
+
+[.bordershadow]
+image::parksmap-advanced-image-options.png[width=600,link="self",window=_blank]
 
 Next, click the blue *Create* button. You will be directed to the *Topology* page, where you should see the visualization for the `parksmap` deployment config in the `workshop` application.
 
-image::parksmap-dc-topology.png[Topology View with Parksmap]
+[.bordershadow]
+image::parksmap-dc-topology.png[width=400,link="self",window=_blank]
 
 These few steps are the only ones you need to run to get a
 container image deployed on OpenShift. This should work with any
@@ -121,25 +125,27 @@ server, a log analyzer, and a file service to help manage uploaded files.
 
 If you click on the `parksmap` entry in the Topology view, you will see some information about that deployment config. The *Resources* tab may be displayed by default. If so, click on the *Details* tab. 
 
-image::switchtoresources.png[Details Tab image]
+[.bordershadow]
+image::switchtoresources.png[link="self",window=_blank]
 
 On that panel, you will see that there is a single *Pod* that was created by your actions.
 
-image::parksmap-overview.png[Pod overview]
+[.bordershadow]
+image::parksmap-overview.png[link="self",window=_blank]
 
 NOTE: You'll notice in this view an info box suggesting to add Health checks for our app. We will discuss it in details later, so for the moment you can just close this info box by clicking on the top-right X icon.
 
-You can also get a list of all the *Pods* created within your *Project*, by navigating to *Workloads -> Pods* in the *Administrator perspective* of the web console.
+You can also get a list of all the *Pods* created within your *Project*, by navigating to *Workloads -> Pods* in the web console.
 
-image::parksmap-podlist.png[Pod list]
+[.bordershadow]
+image::parksmap-podlist.png[link="self",window=_blank]
 
 This *Pod* contains a single container, which
 happens to be the `parksmap` application - a simple Spring Boot/Java application.
 
 You can also examine *Pods* from the command line:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pods
 ----
@@ -147,10 +153,10 @@ oc get pods
 You should see output that looks similar to:
 
 [.console-output]
-[source,bash]
+[source]
 ----
-NAME                READY   STATUS      RESTARTS   AGE
-parksmap-65c4f8b676-k5gkk    1/1     Running     0          20s
+NAME                        READY   STATUS    RESTARTS   AGE
+parksmap-6444cdcd46-hp9st   1/1     Running   0          50s
 ----
 
 The above output lists all of the *Pods* in the current *Project*, including the
@@ -163,8 +169,7 @@ following syntax:
 
 NOTE: Make sure you use the correct *Pod* name from your output.
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pod parksmap-1-gxbgq -o yaml
 ----
@@ -215,13 +220,16 @@ The web interface also shows a lot of the same information on the *Pod* details
 page. If you click on the name of the *Pod*, you will
 find the details page. You can also get there by clicking on the `parksmap` deployment config on the *Topology* page, selecting *Resources*, and then clicking the *Pod* name.
 
-image::parksmap-dc-resources.png[Parksmap Resources]
+[.bordershadow]
+image::parksmap-dc-resources.png[link="self",window=_blank]
 
 From here you can see configuration, metrics, environment variables, logs, events and get a Terminal shell on the running pod.
 
-image::parksmap-pod.png[Pod Details]
+[.bordershadow]
+image::parksmap-pod.png[link="self",window=_blank]
 
-image::parksmap-pod-events.png[Pod Events]
+[.bordershadow]
+image::parksmap-pod-events.png[link="self",window=_blank]
 
 Getting the `parksmap` image running may take a little while to complete. Each
 OpenShift node that is asked to run the image has to pull (download) it, if the
@@ -235,10 +243,7 @@ line with the `oc get pods` command that you used before.
 Whenever OpenShift asks the node's CRI (Container Runtime Interface) runtime (Docker daemon or CRI-O) to run an image, the runtime will check to make sure it has the right "version" of the image to run.
 If it doesn't, it will pull it from the specified registry.
 
-There are a number of ways to customize this behavior. They are documented in
-{openshift-docs-url}/applications/application_life_cycle_management/creating-applications-using-cli.html#applications-create-using-cli-image_creating-applications-using-cli[specifying an image]
-as well as
-{openshift-docs-url}/openshift_images/managing_images/image-pull-policy.html[image pull policy].
+There are a number of ways to customize this behavior. They are documented in link:{ocp4_starter_openshift_docs}/html/images/managing-images[here,window='_blank'].
 
 [#services]
 == Background: Services
@@ -262,15 +267,14 @@ The way that a *Service* maps to a set of *Pods* is via a system of *Labels* and
 protocols can be mapped.
 
 There is a lot more information about
-{openshift-docs-url}/architecture/understanding-development.html#understanding-kubernetes-pods[Services],
+link:{ocp4_starter_openshift_docs}/html/networking/understanding-networking[Services,window='_blank'],
 including the YAML format to make one by hand, in the official documentation.
 
 Now that we understand the basics of what a *Service* is, let's take a look at
 the *Service* that was created for the image that we just deployed. In order to
 view the *Services* defined in your *Project*, enter in the following command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get services
 ----
@@ -278,10 +282,10 @@ oc get services
 You should see output similar to the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
-NAME       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-parksmap   ClusterIP   172.30.22.209  <none>        8080/TCP   3h
+NAME       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+parksmap   ClusterIP   172.31.106.159   <none>        8080/TCP   15m
 ----
 
 In the above output, we can see that we have a *Service* named `parksmap` with an
@@ -289,15 +293,15 @@ IP/Port combination of 172.30.22.209/8080TCP. Your IP address may be different, 
 each *Service* receives a unique IP address upon creation. *Service* IPs are
 fixed and never change for the life of the *Service*.
 
-In the Developer perspective from the *Topology* view, service information is available by clicking the `parksmap` deployment config, then *Resources*, and then you should see the `parksmap` entry in the *Services* section.
+In the *Topology* view, service information is available by clicking the `parksmap` deployment config, then *Resources*, and then you should see the `parksmap` entry in the *Services* section.
 
-image::parksmap-serviceslist.png[Services list]
+[.bordershadow]
+image::parksmap-serviceslist.png[link="self",window=_blank]
 
 You can also get more detailed information about a *Service* by using the
 following command to display the data in YAML:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get service parksmap -o yaml
 ----
@@ -305,7 +309,7 @@ oc get service parksmap -o yaml
 You should see output similar to the following:
 
 [.console-output]
-[source,text]
+[source]
 ----
 apiVersion: v1
 kind: Service
@@ -341,18 +345,18 @@ status:
   loadBalancer: {}
 ----
 
-Take note of the `selector` stanza. Remember it.
+Take note of the `selector` field. Remember it.
 
 Alternatively, you can use the web console to view information about the *Service* by clicking on it from the previous screen.
 
-image::parksmap-service.png[Service]
+[.bordershadow]
+image::parksmap-service.png[link="self",window=_blank]
 
 It is also of interest to view the YAML of the *Pod* to understand how OpenShift
 wires components together. For example, run the following command to get the
 name of your `parksmap` *Pod*:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pods
 ----
@@ -360,24 +364,23 @@ oc get pods
 You should see output similar to the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME                        READY   STATUS    RESTARTS   AGE
-parksmap-65c4f8b676-k5gkk   1/1     Running   0          5m12s
+parksmap-6444cdcd46-hp9st   1/1     Running   0          15m
 ----
 
 Now you can view the detailed data for your *Pod* with the following command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
-oc get pod parksmap-1-gxbgq -o yaml
+oc get pod parksmap-6444cdcd46-hp9st -o yaml
 ----
 
 Under the `metadata` section you should see the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
   labels:
     app: parksmap
@@ -393,8 +396,7 @@ Under the `metadata` section you should see the following:
 matches the *Selector* will be associated with the *Service*. To see this in
 action, issue the following command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc describe service parksmap
 ----

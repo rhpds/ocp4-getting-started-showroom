@@ -9,3 +9,5 @@
 :ocp4_starter_k8s_version: v1.32.5
 :ocp4_starter_api_url: https://api.cluster.example.com:6443
 :ocp4_starter_roadshow_url: https://github.com/openshift-roadshow
+:ocp4_starter_parksmap_image: quay.io/openshiftroadshow/parksmap:latest
+:ocp4_starter_openshift_docs: https://docs.redhat.com/en/documentation/openshift_container_platform/4.19
