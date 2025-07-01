@@ -13,7 +13,7 @@ you always want your application server to be scaled to 3 *Pods* (instances), a
 *ReplicaSet* is needed. Without an RS, any *Pods* that are killed or
 somehow die/exit are not automatically restarted. *ReplicaSets* and *ReplicationController* are how OpenShift "self heals" and while *Deployments* control *ReplicaSets*, *ReplicationController* here are controlled by *DeploymentConfigs*.
 
-From the {openshift-docs-url}/applications/deployments/what-deployments-are.html[deployments documentation]:
+From the link:{ocp4_starter_openshift_docs}/html/building_applications/deployments[deployments documentation,window='_blank']:
 
 [quote]
 __
@@ -35,14 +35,13 @@ Now that we know the background of what a *ReplicaSet* and
 look at the *Deployment* (D) that was created for you when you told
 OpenShift to stand up the `parksmap` image:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get deployment
 ----
 
 [.console-output]
-[source,bash,subs="+macros,+attributes"]
+[source]
 ----
 NAME       READY   UP-TO-DATE   AVAILABLE   AGE
 parksmap   1/1     1            1           20m
@@ -53,14 +52,13 @@ To get more details, we can look into the *ReplicaSet* (*RS*).
 Take a look at the *ReplicaSet* (RS) that was created for you when
 you told OpenShift to stand up the `parksmap` image:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get rs
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME                  DESIRED   CURRENT   READY   AGE
 parksmap-65c4f8b676   1         1         1       21m
@@ -74,7 +72,7 @@ OpenShift's *HorizontalPodAutoscaler* effectively monitors the CPU usage of a
 set of instances and then manipulates the RCs accordingly.
 
 You can learn more about the CPU-based
-{openshift-docs-url}/nodes/pods/nodes-pods-autoscaling.html#nodes-pods-autoscaling-about_nodes-pods-autoscaling[Horizontal Pod Autoscaler here]
+link:{ocp4_starter_openshift_docs}/html/nodes/working-with-pods#nodes-pods-autoscaling[Horizontal Pod Autoscaler here,window='_blank']
 
 [#scaling_the_application]
 == Exercise: Scaling the Application
@@ -82,30 +80,30 @@ You can learn more about the CPU-based
 Let's scale our parksmap "application" up to 2 instances. We can do this with
 the `scale` command. You could also do this by incrementing the Desired Count in the OpenShift web console. Pick one of these methods; it's your choice.
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc scale --replicas=2 deployment/parksmap
 ----
 
 You can also scale up to two pods in the *Developer Perspective*. From the Topology view, first click the `parksmap` deployment config and select the *Details* tab:
 
-image::parksmap-details.png[Details]
+[.bordershadow]
+image::parksmap-details.png[link="self",window=_blank]
 
 Next, click the *^* icon next to the Pod visualization to scale up to 2 pods.
 
-image::parksmap-scaleup.png[Scaling Up]
+[.bordershadow]
+image::parksmap-scaleup.png[link="self",window=_blank]
 
 To verify that we changed the number of replicas, issue the following command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get rs
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME                  DESIRED   CURRENT   READY   AGE
 parksmap-65c4f8b676   2         2         2       23m
@@ -114,14 +112,13 @@ parksmap-65c4f8b676   2         2         2       23m
 You can see that we now have 2 replicas. Let's verify the number of pods with
 the `oc get pods` command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pods
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME                        READY   STATUS    RESTARTS   AGE
 parksmap-65c4f8b676-fxcrq   1/1     Running   0          92s
@@ -131,8 +128,7 @@ parksmap-65c4f8b676-k5gkk   1/1     Running   0          24m
 And lastly, let's verify that the *Service* that we learned about in the
 previous lab accurately reflects two endpoints:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc describe svc parksmap
 ----
@@ -140,7 +136,7 @@ oc describe svc parksmap
 You will see something like the following output:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 Name:              parksmap
 Namespace:         user1
@@ -163,8 +159,7 @@ Events:            <none>
 
 Another way to look at a *Service*'s endpoints is with the following:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get endpoints parksmap
 ----
@@ -172,7 +167,7 @@ oc get endpoints parksmap
 And you will see something like the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME       ENDPOINTS                           AGE
 parksmap   10.128.2.90:8080,10.131.0.40:8080   45m
@@ -184,7 +179,8 @@ many pods are behind a service.
 
 You can also see that both *Pods* are running in the Developer Perspective:
 
-image::parksmap-scaled.png[Scaled]
+[.bordershadow]
+image::parksmap-scaled.png[link="self",window=_blank]
 
 Overall, that's how simple it is to scale an application (*Pods* in a
 *Service*). Application scaling can happen extremely quickly because OpenShift
@@ -202,14 +198,13 @@ Since we have two *Pods* running right now, let's see what happens if we
 "accidentally" kill one. Run the `oc get pods` command again, and choose a *Pod*
 name. Then, do the following:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc delete pod parksmap-65c4f8b676-k5gkk && oc get pods
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 pod "parksmap-65c4f8b676-k5gkk" deleted
 NAME                        READY   STATUS    RESTARTS   AGE
@@ -235,8 +230,8 @@ application instance wasn't alive, it would kill the instance and then restart
 it, always ensuring that the desired number of replicas was in place.
 
 More information on probing applications is available in the
-{openshift-docs-url}/applications/application-health.html[Application
-Health] section of the documentation and later in this guide.
+link:{ocp4_starter_openshift_docs}/html/building_applications/application-health[Application Health,window='_blank'] 
+section of the documentation and later in this guide.
 
 [#scale_down]
 == Exercise: Scale Down
