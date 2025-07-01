@@ -10,7 +10,7 @@ image::openshift-logo.png[OpenShift Logo, 400]
 
 == What is OpenShift?
 
-link:https://www.redhat.com/en/technologies/cloud-computing/openshift[OpenShift] is a container application platform that allows developers to deploy, manage, and scale their applications on any infrastructure, whether it's on-premise, public, or hybrid cloud.
+link:https://www.redhat.com/en/technologies/cloud-computing/openshift[OpenShift,window='_blank'] is a container application platform that allows developers to deploy, manage, and scale their applications on any infrastructure, whether it's on-premise, public, or hybrid cloud.
 
 == Introduction to the lab
 
