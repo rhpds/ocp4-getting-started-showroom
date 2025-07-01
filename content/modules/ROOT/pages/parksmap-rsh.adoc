@@ -17,8 +17,7 @@ need to run an SSH service inside each container. In order to establish an
 interactive session inside a container, you can use the `oc rsh` command. First
 get the list of available pods:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pods
 ----
@@ -26,7 +25,7 @@ oc get pods
 You should an output similar to the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME                        READY   STATUS    RESTARTS   AGE
 parksmap-65c4f8b676-fxcrq   1/1     Running   0          52m
@@ -34,8 +33,7 @@ parksmap-65c4f8b676-fxcrq   1/1     Running   0          52m
 
 Now you can establish a remote shell session into the pod by using the pod name:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc rsh parksmap-65c4f8b676-fxcrq
 ----
@@ -43,7 +41,7 @@ oc rsh parksmap-65c4f8b676-fxcrq
 You would see the following output:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 sh-4.2$
 ----
@@ -57,14 +55,13 @@ can be specified after the pod name in the issued command.
 
 Run the following command to list the files in the top folder:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 ls /
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 anaconda-post.log  bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  parksmap.jar  proc  root  run  sbin  srv  sys  tmp  usr  var
 ----
@@ -74,21 +71,22 @@ anaconda-post.log  bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt 
 
 The OpenShift Web Console also provides a convenient way to access a terminal session on the container without having to use the CLI.
 
-In order to access a pod's terminal via the Web Console, go to the Topology view in the Developer Perspective, click the `parksmap` entry, and then click on the *Pod*. 
+In order to access a pod's terminal via the Web Console, go to the Topology view, click the `parksmap` entry, and then click on the *Pod*. 
 
-image::parksmap-rsh-dev-console-pod.png[Pod in Dev Console]
+[.bordershadow]
+image::parksmap-rsh-dev-console-pod.png[link="self",window=_blank]
 
 Once you are viewing the information for the selected pod, click on the *Terminal* tab to open up a shell session.
 
-image::parksmap-rsh-applications-pods-terminal.png[Pod List]
+[.bordershadow]
+image::parksmap-rsh-applications-pods-terminal.png[link="self",window=_blank]
 
 
 Go ahead and execute the same commands you did when using the CLI to see how the Web Console based terminal behaves.
 
 Before proceeding, close the connection to the pod.
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 exit
 ----
@@ -103,8 +101,7 @@ the executable path.
 
 In order to show just the JAR file, run the following:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc exec parksmap-65c4f8b676-fxcrq -- ls -l /parksmap.jar
 ----
@@ -112,7 +109,7 @@ oc exec parksmap-65c4f8b676-fxcrq -- ls -l /parksmap.jar
 You would see something like the following:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 -rw-r--r--. 1 root root 39138901 Apr  1 16:54 /parksmap.jar
 ----
@@ -127,8 +124,7 @@ end and where the actual command to execute begins. Take a look at `oc exec
 
 You can also specify the shell commands to run directly with the *oc rsh* command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc rsh parksmap-65c4f8b676-fxcrq whoami
 ----
@@ -136,7 +132,7 @@ oc rsh parksmap-65c4f8b676-fxcrq whoami
 You would see something like:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 1000580000
 ----
@@ -149,6 +145,6 @@ when OpenShift launches a container its user is actually randomized.
 If you want or need to allow OpenShift users to deploy container images that do
 expect to run as root (or any specific user), a small configuration change is
 needed. You can learn more about the
-{openshift-docs-url}/openshift_images/create-images.html#images-create-guide-general_create-images[container image guidelines]
+link:{ocp4_starter_openshift_docs}/html/images/creating-images[container image guidelines,window='_blank'] 
 for OpenShift.
 ====
