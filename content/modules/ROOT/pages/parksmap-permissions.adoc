@@ -16,13 +16,15 @@ The **default** service account is the one taking the responsibility of running 
 every pod that is launched. By changing the permissions for that service
 account, we can do interesting things.
 
-You can view current permissions in the web console, go to the Topology view in the Developer Perspective, click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
+You can view current permissions in the web console, go to the Topology view, click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
 
-image::parksmap-permissions-namespace.png[Namespace]
+[.bordershadow]
+image::parksmap-permissions-namespace.png[link="self",window=_blank]
 
 Then, select *Role Bindings* tab and filter by *Namespace Role Binding* so see all permissions for selected project.
 
-image::parksmap-permissions-membership.png[Membership]
+[.bordershadow]
+image::parksmap-permissions-membership.png[link="self",window=_blank]
 
 [#grant_serviceaccount_view_permissions]
 == Exercise: Grant Service Account View Permissions
@@ -38,31 +40,29 @@ Choose an approach represented by the following tabs to update the `default` *Se
 OpenShift Console::
 +
 --
-. From the *Workloads -> Deployments* page, click on the *Namespace*, then *Role Bindings* and then the *Create Binding* button.
+. Go to *Projects* -> *Namespace*, then *Role Bindings* and then the *Create Binding* button.
 +
-image::parksmap-permissions-membership-serviceaccount-list.png[Service account list]
+image::parksmap-permissions-membership-serviceaccount-list.png[link="self",window=_blank]
 +
 . Select *view* for the Role Binding Name *{ocp4_starter_project}* for the Namespace, *view* for the Role Name, *Service Account* for the Subject, *{ocp4_starter_project}* for the Subject Namespace, and *default* for the Subject Name.
 +
-image::parksmap-permissions-membership-serviceaccount-edit.png[Service account edit]
+image::parksmap-permissions-membership-serviceaccount-edit.png[link="self",window=_blank]
 +
 . Once you're finished editing permissions, click on the *Create* button.  You should then be able to see it on the `Role Bindings` list for the `{ocp4_starter_project}` project`
 +
-image::parksmap-permissions-membership-serviceaccount-done.png[Service account changed]
+image::parksmap-permissions-membership-serviceaccount-done.png[link="self",window=_blank]
 --
 `oc` Command Line::
 +
 --
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste",subs="attributes"]
 ----
 oc project {ocp4_starter_project}
 ----
 
 Then use the `oc policy add-role-to-user` command to give the predefined `view` _role_ to the user:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc policy add-role-to-user view -z default
 ----
@@ -71,7 +71,7 @@ oc policy add-role-to-user view -z default
 ****
 From the `-h` output on `oc policy`:
 
-[source,bash]
+[source]
 ----
 -z, --serviceaccount=[]: service account in the current namespace to use as a user
 ----
@@ -88,14 +88,14 @@ NOTE: The `-z` flag will only work for service accounts in the *current* project
 [#redeploy_application]
 == Exercise: Redeploy Application
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc rollout restart deployment/parksmap
 ----
 
 A new deployment is immediately started. Return to Topology view and click the `parksmap` entry again to watch it happen. You might not be fast enough! But it will be reflected in the *ReplicaSet* number.
 
-image::parksmap-permissions-redeployed.png[Application deployed]
+[.bordershadow]
+image::parksmap-permissions-redeployed.png[link="self",window=_blank]
 
 If you look at the logs for the application now, you should see no errors.  That's great.
