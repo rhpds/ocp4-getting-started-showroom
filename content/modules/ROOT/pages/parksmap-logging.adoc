@@ -32,27 +32,28 @@ various log information to various files, fear not.
 == Exercise: Examining Logs
 
 Since we already deployed our application, we can take some time to examine its
-logs. In the *Developer Perspective*, from Topology view, click the `parksmap` entry and then the *Resources* tab. You should see a *View Logs* link next to the *Pod* entry.
+logs. In the *Topology* view, click the `parksmap` entry and then the *Resources* tab. You should see a *View Logs* link next to the *Pod* entry.
 
-image::parksmap-view-logs-link.png[View Logs for Pod]
+[.bordershadow]
+image::parksmap-view-logs-link.png[link="self",window=_blank]
 
 Click the *View Logs* link and you should see a nice view of the *Pod*'s logs:
 
-image::parksmap-logging-console-logs.png[Application Logs]
+[.bordershadow]
+image::parksmap-logging-console-logs.png[link="self",window=_blank]
 
 WARNING: If you notice some errors in the log, that's okay. We'll remedy those in a little bit.
 
 You also have the option of viewing logs from the command line. Get the name of
 your *Pod*:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get pods
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME               READY     STATUS    RESTARTS   AGE
 parksmap-1-hx0kv   1/1       Running   0          5h
@@ -60,8 +61,7 @@ parksmap-1-hx0kv   1/1       Running   0          5h
 
 And then use the `logs` command to view this *Pod*'s logs:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc logs parksmap-1-hx0kv
 ----
@@ -69,7 +69,7 @@ oc logs parksmap-1-hx0kv
 You will see all of the application logs scroll on your screen:
 
 [.console-output]
-[source,bash]
+[source]
 ----
 2019-05-22 19:37:01.433  INFO 1 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
 2019-05-22 19:37:01.465  INFO 1 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
