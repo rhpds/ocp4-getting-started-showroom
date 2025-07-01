@@ -5,7 +5,8 @@ include::vars.adoc[]
 
 In this lab, we're going to make our application visible to the end users, so they can access it.
 
-image::roadshow-app-architecture-parksmap-2.png[Application architecture,800,align="center"]
+[.bordershadow]
+image::roadshow-app-architecture-parksmap-2.png[link="self",window=_blank]
 
 [#routes]
 == Background: Routes
@@ -35,13 +36,13 @@ You can create a Route either from the OpenShift Console or using the `oc` CLI. 
 OpenShift Console::
 +
 --
-. Via the *Administrator Perspective*, just click *Networking -> Routes* and then the *Create Route* button.
+. Click *Networking -> Routes* and then the *Create Route* button.
 . Insert *parksmap* in *Name* field.
 . From *Service* field, select *parksmap*. For *Target Port*, select *8080*.
 . In *Security* section, check *Secure route*. Select *Edge* from *TLS Termination* list.
 . Leave all other fields blank and click *Create*:
 +
-image::parksmap-route-create-1.png[Create Route,align="center"]
+image::parksmap-route-create-1.png[link="self",window=_blank]
 
 TIP: The TLS certificate for cluster Apps domains is used by default, so you don't need to add any certificate. In case you would like a custom domain resolving to OpenShift Nodes hosting Routers, you can add certificates also on a per-route basis.
 
@@ -53,28 +54,26 @@ When creating a *Route*, some other options can be provided, like the hostname a
 --
 We are looking to simply `expose` the *Service*, but first we need to verify that we don't already have any existing *Routes*:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get routes
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 No resources found.
 ----
 
 Now we need to get the *Service* name to expose:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get services
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 NAME       CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 parksmap   172.30.169.213   <none>        8080/TCP   5h
@@ -82,14 +81,13 @@ parksmap   172.30.169.213   <none>        8080/TCP   5h
 
 Once we know the *Service* name, creating a *Route* is a simple one-command task:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc create route edge parksmap --service=parksmap
 ----
 
 [.console-output]
-[source,bash]
+[source]
 ----
 route.route.openshift.io/parksmap exposed
 ----
@@ -99,26 +97,25 @@ route.route.openshift.io/parksmap exposed
 
 Verify the *Route* was created with the following command:
 
-[.console-input]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste"]
 ----
 oc get route
 ----
 
-[.console-output]
-[source,bash,subs="+attributes,macros+"]
+[source,role="copypaste",subs="attributes"]
 ----
-NAME       HOST/PORT                            PATH      SERVICES   PORT       TERMINATION   WILDCARD
-parksmap   parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}             parksmap   8080-tcp   edge          None
+NAME       HOST/PORT                                                           PATH   SERVICES   PORT       TERMINATION   WILDCARD
+parksmap   parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}          parksmap   8080-tcp   edge          None
 ----
 
-You can also verify the *Route* in the *Developer Perspective* under the *Resources* tab for your `parksmap` deployment configuration. Also note that there is a decorator icon on the `parksmap` visualization now. If you click that, it will open the URL for your *Route* in a browser.
+You can also verify the *Route* in the *Topology* view under the *Resources* tab for your `parksmap` deployment configuration. Also note that there is a decorator icon on the `parksmap` visualization now. If you click that, it will open the URL for your *Route* in a browser.
 
-image::parksmap-route-created.png[Route created]
+[.bordershadow]
+image::parksmap-route-created.png[link="self",window=_blank]
 
 This application is now available at the URL shown in the Developer Perspective. Click the link and you will see it.
 
 NOTE: If this is the first time opening this page, the browser will ask permission to get your position. This is needed by the Frontend app to center the world map to your location, if you don't allow it, it will just use a default location.
 
-image::parksmap-route-empty-map.png[Empty map]
-
+[.bordershadow]
+image::parksmap-route-empty-map.png[link="self",window=_blank]
