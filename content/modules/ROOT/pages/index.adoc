@@ -1,8 +1,4 @@
 = Welcome to the OpenShift Getting Started Workshop
-:!sectids:
-ifndef::lab[]
-:lab-name: Java
-endif::[]
 
 include::vars.adoc[]
 

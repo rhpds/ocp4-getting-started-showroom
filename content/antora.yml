@@ -6,6 +6,9 @@ nav:
 
 start_page: ROOT:index.adoc
 
+# DO NOT USE these vars in your asciidoc content.
+# Use the vars defined in the vars.adoc file instead.
+# These vars should be referenced only in the vars.adoc file.
 asciidoc:
   attributes:
     openshift_console_url: https://console.apps.cluster.example.com
@@ -13,18 +16,6 @@ asciidoc:
     user: userX
     password: password
     login_command: oc login --insecure-skip-tls-verify=false -u userX -p password https://api.cluster.example.com:6443
-
-    experimental: true
-    parksmap-version: latest
-    parksmap-image: quay.io/openshiftroadshow/parksmap
-    openshift-docs-url: https://docs.openshift.com/container-platform/4.11
-    openshift-version: 4.11
-    project-namespace: workshop
-    release-version: roks
-    roks-login-url: https://cloud.ibm.com/authorize/devcluster
-    page-pagination: true
-    lab: java
-    lab-name: Java
-  extensions:
-    - ./lib/tab-block.js
-    - ./lib/remote-include-processor.js
+    gitea_console_url: https://gitea.apps.cluster.example.com
+    gitea_password: password
+    gitea_user: userX
