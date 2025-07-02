@@ -11,8 +11,8 @@ health checks in OpenShift. These come in two flavors:
 * Liveness probe
 
 From the
-{openshift-docs-url}/applications/application-health.html[Application
-Health] section of the documentation, we see the definitions:
+link:{ocp4_starter_openshift_docs}/html/building_applications/application-health[Application
+Health,window='_blank'] section of the documentation, we see the definitions:
 
 [glossary]
 Liveness Probe::
@@ -46,7 +46,8 @@ that unhealthy instances are restarted (if they fail the liveness checks).
 
 From the *Topology* view, click `nationalparks`. On the side panel, click the *Actions* dropdown menu and the select *Add Health Checks*.
 
-image::nationalparks-application-health-menu.png[Add Health Checks]
+[.bordershadow]
+image::nationalparks-application-health-menu.png[link="self",window=_blank]
 
 Click to *Add Readiness Probe* and add in *Path* field: 
 
@@ -57,7 +58,8 @@ Click to *Add Readiness Probe* and add in *Path* field:
 
 Leave all default settings like *Port* 8080 and *Type* HTTP GET. Click the little bottom-right confirmation gray tick to confirm:
 
-image::nationalparks-application-health-settings.png[Add Readiness and Liveness Probe]
+[.bordershadow]
+image::nationalparks-application-health-settings.png[link="self",window=_blank]
 
 Repeat the same procedure for Liveness Probe, click to *Add Liveness Probe* and add in *Path* field: 
 
@@ -70,7 +72,8 @@ Leave all default settings like *Port* 8080 and *Type* HTTP GET. Click the littl
 
 Finally confirm all new changes clicking to *Add*:
 
-image::nationalparks-application-health-add.png[Add Probes]
+[.bordershadow]
+image::nationalparks-application-health-add.png[link="self",window=_blank]
 
 
 You will notice that these changes caused a new deployment -- they counted as a
