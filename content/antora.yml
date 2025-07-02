@@ -11,6 +11,7 @@ start_page: ROOT:index.adoc
 # These vars should be referenced only in the vars.adoc file.
 asciidoc:
   attributes:
+    page-pagination: true
     openshift_console_url: https://console.apps.cluster.example.com
     openshift_cluster_ingress_domain: apps.cluster.example.com
     user: userX
