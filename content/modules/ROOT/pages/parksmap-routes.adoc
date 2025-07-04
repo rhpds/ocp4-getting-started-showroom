@@ -89,7 +89,7 @@ oc create route edge parksmap --service=parksmap
 [.console-output]
 [source]
 ----
-route.route.openshift.io/parksmap exposed
+route.route.openshift.io/parksmap created
 ----
 
 --
