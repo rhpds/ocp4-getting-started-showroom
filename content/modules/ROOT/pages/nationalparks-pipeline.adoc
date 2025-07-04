@@ -124,7 +124,7 @@ spec:
         - name: source
           workspace: app-source
         - name: maven_settings
-          workspace: maven_settings
+          workspace: maven-settings
     - name: build-image
       params:
         - name: IMAGE
@@ -160,7 +160,7 @@ spec:
         name: openshift-client
   workspaces:
     - name: app-source
-    - name: maven_settings
+    - name: maven-settings
 ----
 
 Now, let's head back to the *Pipeline builder* view to see it visually.

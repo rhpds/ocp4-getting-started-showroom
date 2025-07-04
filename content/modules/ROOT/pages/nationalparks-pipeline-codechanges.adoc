@@ -73,14 +73,17 @@ image::devops-pipeline-triggers-eventlistener.png[width=500,link="self",window=_
 [#configuring_webhooks]
 == Exercise: Configuring Gitea Web Hooks
 
-In this section you can use a build webhook to trigger a pipeline execution every time there is a change in the nationalparks Gitea repository. In the web console, click *Builds* -> *BuildConfigs* in the left navigation. Click the `nationalparks` build config and scroll down to the Webhooks section.
+In this section you can use a build webhook to trigger a pipeline execution every time there is a change in the nationalparks Gitea repository.
 
-On this screen you will see webhook information as shown in the following image:
+We will use the EventListener we created in the previous section to configure a webhook in Gitea. The `EventListener`` has an OpenShift `Route` exposed
+that we are going to use as the URL for the webhook.
 
-[.bordershadow]
-image::nationalparks-codechanges-webhook-config.png[link="self",window=_blank]
+[source,role=copypaste,subs=attributes]
+----
+http://el-nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/
+----
 
-Click *Copy URL with Secret* from the *Generic* webhook. Once you have the URL copied to your clipboard, navigate to the code repository
+Once you have the URL copied to your clipboard, navigate to the code repository
 that you have on Gitea:
 
 link:{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks[Gitea Repository,window='_blank']
@@ -105,9 +108,7 @@ Click on *Webhooks*, then the *Add Webhook* button, and finally select *Gitea*.
 [.bordershadow]
 image::nationalparks-codechanges-add-webhook.png[link="self",window=_blank]
 
-In the next screen, paste your link into the "Payload URL" field. You can leave the
-secret token field blank -- the secret is already in the URL and does not need
-to be in the payload.
+In the next screen, paste your link into the "Payload URL" field.
 
 Change the `Content Type` to `application/json`.
 
