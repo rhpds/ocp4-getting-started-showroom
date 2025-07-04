@@ -15,7 +15,7 @@ image::openshift-console-login.png[width=500,link="self",window=_blank]
 
 To access the OpenShift Console, navigate to the following URL in your browser:
 
-*Console URL:* `{ocp4_starter_console_url}`
+*Console URL:* link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
 
 Use the following credentials to log in:
 

@@ -10,7 +10,7 @@ Note that the urls are also embedded inside the labs so that you don't have to g
 [#openshift_cluster_url]
 == OpenShift Cluster URL
 
-*URL*: {ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
+*URL*: link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
 
 *Username*: {ocp4_starter_username} +
 *Password*: {ocp4_starter_password}
