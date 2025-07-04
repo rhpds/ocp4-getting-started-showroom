@@ -19,3 +19,4 @@
 :ocp4_starter_openshift_github: https://github.com/openshift
 :ocp4_starter_openshift_roadshow: https://github.com/openshift-roadshow
 :ocp4_starter_devfile_docs: https://devfile.io/docs/2.3.0
+:ocp4_starter_showroom_url: https://github.com/rhpds/ocp4-getting-started-showroom
