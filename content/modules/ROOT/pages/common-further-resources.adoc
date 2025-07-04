@@ -14,7 +14,7 @@ If you have finished this workshop early and want to experiment some more,
 we have additional exercises you can try out using our online interactive
 learning environment.
 
-* *link:https://developers.redhat.com/learn[Red Hat Developer Learning Portal]* - An online interactive learning environment where you can run
+* link:https://developers.redhat.com/learn[*Red Hat Developer Learning Portal*,window='_blank'] - An online interactive learning environment where you can run
 through various scenarios related to using OpenShift and more.
 
 The online interactive learning environment is always available so you
@@ -24,31 +24,32 @@ Below you will find further resources for learning about OpenShift and
 running OpenShift on your own computer, as well as details about OpenShift
 Online or other OpenShift related products and services.
 
-* *link:https://docs.openshift.com[OpenShift Documentation]* - The landing page for OpenShift documentation.
+* link:https://docs.redhat.com/en/documentation/openshift_container_platform[*OpenShift Documentation*,window='_blank'] - The landing page for OpenShift documentation.
 
-* *link:https://developers.redhat.com/learn/openshift[OpenShift Resources on developers.redhat.com]* - A collection of resources for developers who are building and deploying applications on OpenShift.
+* link:https://developers.redhat.com/learn/openshift[*OpenShift Resources on developers.redhat.com*,window='_blank'] - A collection of resources for developers who are building and deploying applications on OpenShift.
 
-* *link:https://developers.redhat.com/products/openshift-local/overview[Red Hat OpenShift Local]* - A tool which can
+* link:https://developers.redhat.com/products/openshift-local/overview[*Red Hat OpenShift Local*,window='_blank'] - A tool which can
 be used to install a local OpenShift cluster on your own computer, running
 in a virtual machine.
 
-* *link:https://www.openshift.com/dedicated[OpenShift Dedicated]* - A
+* link:https://www.openshift.com/dedicated[*OpenShift Dedicated*,window='_blank'] - A
 dedicated hosting environment for running your applications, managed and
 supported for you by Red Hat.
 
-* *link:https://www.openshift.com/[OpenShift Container Platform]* - The Red
+* link:https://www.openshift.com/[*OpenShift Container Platform*,window='_blank'] - The Red
 Hat supported OpenShift product for installation on premise or in hosted
 cloud environments.
 
-* *link:https://commons.openshift.org[OpenShift Commons]* - A community for users, partners, customers, and contributors to come together to collaborate and work together on OpenShift.
+* link:https://commons.openshift.org[*OpenShift Commons*,window=_blank] - A community for users, partners, customers, and contributors to come together to collaborate and work together on OpenShift.
 
-The following free online eBooks are also available for download related to
-OpenShift.
+The following free online eBooks are also available for download related to OpenShift.
 
-* *link:https://developers.redhat.com/e-books/openshift-for-developers[OpenShift for Developers, Second Edition]*
+* link:https://developers.redhat.com/e-books/openshift-for-developers[*OpenShift for Developers Second Edition*,window='_blank']
 
-image::further-resources-openshift-for-developers.png[OpenShift for Developers]
+[.bordershadow]
+image::further-resources-openshift-for-developers.png[link="self",window=_blank]
 
-* *link:https://developers.redhat.com/e-books/path-gitops[The Path to GitOps]*
+* link:https://developers.redhat.com/e-books/path-gitops[*The Path to GitOps*,window=_blank]
 
-image::further-resources-devops-with-openshift.png[DevOps with OpenShift]
+[.bordershadow]
+image::further-resources-devops-with-openshift.png[link="self",window=_blank]
