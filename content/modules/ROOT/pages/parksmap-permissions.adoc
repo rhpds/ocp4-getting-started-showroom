@@ -6,22 +6,22 @@ include::vars.adoc[]
 Almost every interaction with an OpenShift environment that you can think of
 requires going through the OpenShift's control plane API. All API interactions are both authenticated (AuthN - who are you?) and authorized (AuthZ - are you allowed to do what you are asking?).
 
-In the log aggregation lab we saw that there was an
-error in reference to a *Service Account*.
+In the logging section, you saw an
+error related to a *Service Account*.
 
-As OpenShift is a declarative platform, some actions will be performed by the platform and not by the end user (when he or she issues a command). These actions are performed using a *Service Account* which is a special type of `user` that the platform will use internally.
+As OpenShift is a declarative platform, some actions will be performed by the platform and not by the end user issuing a command. These actions are performed using a *Service Account* which is a special type of `user` that the platform will use internally.
 
 OpenShift automatically creates a few special service accounts in every project.
-The **default** service account is the one taking the responsibility of running the pods, and OpenShift uses and injects this service account into
-every pod that is launched. By changing the permissions for that service
-account, we can do interesting things.
+The **default** service account is responsible for running the Pods, and OpenShift automatically injects this service account into
+every Pod that is launched. By changing the permissions for that service
+account, you can enable additional functionality.
 
-You can view current permissions in the web console, go to the Topology view, click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
+To view current permissions in the web console, go to the {ocp4_starter_console_url}/topology/ns/{ocp4_starter_project}[Topology view, link="self",window=_blank], click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
 
 [.bordershadow]
 image::parksmap-permissions-namespace.png[link="self",window=_blank]
 
-Then, select *Role Bindings* tab and filter by *Namespace Role Binding* so see all permissions for selected project.
+Select the *Role Bindings* tab and filter by *Namespace Role Binding* to see all permissions for the selected project.
 
 [.bordershadow]
 image::parksmap-permissions-membership.png[link="self",window=_blank]
@@ -29,38 +29,40 @@ image::parksmap-permissions-membership.png[link="self",window=_blank]
 [#grant_serviceaccount_view_permissions]
 == Exercise: Grant Service Account View Permissions
 The parksmap application wants to talk to the OpenShift API to learn about other
-*Pods*, *Services*, and resources within the *Project*. You'll soon learn why!
+*Pods*, *Services*, and resources within your *Project*. You'll soon learn why!
 
-The parksmap application runs as a *Service Account* in our project on the cluster: namely the `default` *Service Account*. It is to this *Service Account* that we can grant the necessary `view` access that will allow it to query the API to see what resources are within the *Project*. This also has the added benefit of addressing the cause of the error message we witnessed previously in the logs.
+The parksmap application runs as a *Service Account* in your project on the cluster: namely the `default` *Service Account*. You can grant the necessary `view` access to this *Service Account* to allow it to query the API and see what resources are within the *Project*. This addresses the cause of the error message you saw previously in the logs.
 
-Choose an approach represented by the following tabs to update the `default` *Service Account* in the `{ocp4_starter_project}` project
+Choose an approach represented by the following tabs to update the `default` *Service Account* in the `{ocp4_starter_project}` project:
 
 [tabs]
 ====
 OpenShift Console::
 +
 --
-. Go to *Projects* -> *Namespace*, then *Role Bindings* and then the *Create Binding* button.
+. Go to *Home* -> *Projects* -> *{ocp4_starter_project}*, then *Role Bindings* and then click the *Create Binding* button.
 +
 image::parksmap-permissions-membership-serviceaccount-list.png[link="self",window=_blank]
 +
-. Select *view* for the Role Binding Name *{ocp4_starter_project}* for the Namespace, *view* for the Role Name, *Service Account* for the Subject, *{ocp4_starter_project}* for the Subject Namespace, and *default* for the Subject Name.
+. Configure the following fields: Role Binding Name: *view*, Namespace: *{ocp4_starter_project}*, Role Name: *view*, Subject: *Service Account*, Subject Namespace: *{ocp4_starter_project}*, Subject Name: *default*.
 +
 image::parksmap-permissions-membership-serviceaccount-edit.png[link="self",window=_blank]
 +
-. Once you're finished editing permissions, click on the *Create* button.  You should then be able to see it on the `Role Bindings` list for the `{ocp4_starter_project}` project`
+. Once you're finished editing permissions, click on the *Create* button. You should then be able to see the new `view` item in the *RoleBindings* list for the `{ocp4_starter_project}` project.
 +
 image::parksmap-permissions-membership-serviceaccount-done.png[link="self",window=_blank]
 --
 `oc` Command Line::
 +
 --
+First, confirm you're in the right project context:
+
 [source,role="copypaste",subs="attributes"]
 ----
 oc project {ocp4_starter_project}
 ----
 
-Then use the `oc policy add-role-to-user` command to give the predefined `view` _role_ to the user:
+Then use the `oc policy add-role-to-user` command to grant the predefined `view` role to the service account:
 
 [source,role="copypaste"]
 ----
@@ -81,21 +83,23 @@ entire string, which, in this case, is
 `system:serviceaccount:{ocp4_starter_project}:default`. It's a nifty shortcut.
 ****
 
-NOTE: The `-z` flag will only work for service accounts in the *current* project.  If you're referring to a service account in a different project, use the `-n <project>`switch.
+NOTE: The `-z` flag will only work for service accounts in the *current* project. If you're referring to a service account in a different project, use the `-n <project>` switch.
 --
 ====
 
 [#redeploy_application]
 == Exercise: Redeploy Application
 
+Use the `oc rollout` command to restart the `parksmap` application. This will create a new Pod.
+
 [source,role="copypaste"]
 ----
 oc rollout restart deployment/parksmap
 ----
 
-A new deployment is immediately started. Return to Topology view and click the `parksmap` entry again to watch it happen. You might not be fast enough! But it will be reflected in the *ReplicaSet* number.
+A new deployment is immediately started. Return to Topology view and click the `parksmap` entry again to watch it happen. The deployment happens quickly, but you can see the change reflected in the *ReplicaSet* number. You can also use the `oc get pods` command to see that the new Pod has an age that's just a few seconds old.
 
 [.bordershadow]
 image::parksmap-permissions-redeployed.png[link="self",window=_blank]
 
-If you look at the logs for the application now, you should see no errors.  That's great.
+If you check the application logs you should see no errors.

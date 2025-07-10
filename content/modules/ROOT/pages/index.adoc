@@ -6,12 +6,12 @@ image::openshift-logo.png[OpenShift Logo, 400]
 
 == What is OpenShift?
 
-link:https://www.redhat.com/en/technologies/cloud-computing/openshift[OpenShift,window='_blank'] is a container application platform that allows developers to deploy, manage, and scale their applications on any infrastructure, whether it's on-premise, public, or hybrid cloud.
+link:https://www.redhat.com/en/technologies/cloud-computing/openshift[OpenShift,window='_blank'] is a container-based application platform that enables development teams to deploy, manage, and scale their applications across any infrastructure—whether on-premises, public cloud, or hybrid environments.
 
-== Introduction to the lab
+== What is a Container?
 
-link:https://www.redhat.com/en/topics/containers/whats-a-linux-container-vb[Containers,window='_blank'] are a standardized way to package apps with all of their dependencies to simplify deployment and speed delivery. Unlike virtual machines, containers do not bundle to the operating system. Only the application code, run time, libraries, and settings are packaged inside of containers. Thus, containers are more lightweight, portable, and efficient as compared to virtual machines.
+link:https://www.redhat.com/en/topics/containers/whats-a-linux-container-vb[Containers,window='_blank'] are a standardized way to package applications along with all their dependencies. This approach simplifies deployment and accelerates delivery. Unlike virtual machines, containers do not include an entire operating system. Only the application, runtime, libraries, and configuration are packaged inside the container. This makes containers a more lightweight, portable, and efficient deployment model compared to virtual machines.
 
-For developers looking to kickstart their projects, link:https://openshift.com/[OpenShift,window='_blank'] enables efficient application development through streamlined workflows and validated integrations.
+Building on this container foundation, link:https://openshift.com/[OpenShift,window='_blank'] enables efficient application development by providing a complete platform that streamlines workflows and includes validated integrations - making it ideal for development teams looking to accelerate their projects and organizations looking for a standardized application platform.
 
-This lab is accompanied by the slide deck available at link:https://dn.dev/openshift-workshop[dn.dev/openshift-workshop,window='_blank']
+This workshop is accompanied by a slide deck available at link:https://dn.dev/openshift-workshop[dn.dev/openshift-workshop,window='_blank']

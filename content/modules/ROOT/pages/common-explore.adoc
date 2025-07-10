@@ -3,61 +3,46 @@
 
 include::vars.adoc[]
 
+OpenShift provides two primary interfaces for interacting with the platform: a web-based console for visual management and a command-line interface for scripting and advanced operations. In this section, you'll learn how to access and use both tools effectively.
+
 [#the_web_console]
 == The Web Console
 
-The OpenShift Console provides an intuitive graphical interface for managing your projects, applications, and cluster resources. It is accessible from any modern web browser and is designed to simplify common administrative and development tasks.
+The OpenShift Console provides an intuitive graphical interface for managing your projects, applications, and cluster resources. It's accessible from any modern web browser and is designed to simplify common administrative and development tasks.
 
-== Accessing the OpenShift Console
+=== Accessing the OpenShift Web Console
 
 [.bordershadow]
 image::openshift-console-login.png[width=500,link="self",window=_blank]
 
-To access the OpenShift Console, navigate to the following URL in your browser:
+To access the OpenShift Console, navigate to the following URL in your browser and log in using the provided credentials:
 
 *Console URL:* link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
 
-Use the following credentials to log in:
-
 *Username:* `{user}`
+
 *Password:* `{ocp4_starter_password}`
+
+Once logged in, you'll see the main dashboard where you can view your projects and navigate through the platform's features.
 
 [.bordershadow]
 image::openshift-console-dashboard.png[link="self",window=_blank]
 
-== Logging in with the OpenShift CLI
-
-You can also log in to OpenShift using the command-line interface (CLI). Use the following command, replacing the values with your credentials:
-
-
-[source,role="copypaste",subs="attributes"]
-----
-{ocp4_starter_login}
-----
-
-This will authenticate you to the cluster using your username and password.
-
 [#command_line_interface]
 == Command Line Interface
 
-OpenShift ships with a feature rich web console as well as command line tools
-to provide users with a nice interface to work with applications deployed to the
-platform.  The OpenShift tools are a single executable written in the Go
-programming language and is available for the following operating systems:
+While the web console is excellent for visual management, the OpenShift CLI (`oc`) provides powerful automation capabilities and access to advanced features. The CLI is a single executable written in Go and is available for Microsoft Windows, macOS, and Linux.
 
-- Microsoft Windows
-- Mac OS X
-- Linux
+=== Verifying the CLI Installation
 
-In your web terminal, you have the OpenShift CLI available as you have already logged in to the cluster.
-You can verify it by checking the version of the OpenShift CLI:
+The CLI has been pre-installed in your workshop environment. Verify it's available and check the version:
 
 [source,role="copypaste",subs="attributes"]
 ----
 oc version
 ----
 
-You should see the following (or something similar):
+You should see output similar to this:
 
 [.console-output]
 [source,subs="attributes"]
@@ -67,11 +52,32 @@ Server Version: {ocp4_starter_server_version}
 Kubernetes Version: {ocp4_starter_k8s_version}
 ----
 
-You can also verify if you have correctly logged in to the OpenShift cluster.
+=== Logging in with the CLI
+
+Authenticate with the OpenShift cluster using the command line:
+
+[source,role="copypaste",subs="attributes"]
+----
+{ocp4_starter_login}
+----
+
+This command authenticates you to the cluster using your username and password. 
+
+TIP: Alternatively, you can use a token for authentication. To obtain a token, use the **Copy login command** option in the OpenShift Web Console as shown.
+
+image::openshift-console-login-command.png[link="self",window=_blank]
+
+=== Verifying Your Access
+
+Let's confirm that you're properly authenticated and can access your assigned resources.
+
+First, verify your login credentials:
 [source,role="copypaste",subs="attributes"]
 ----
 oc whoami
 ----
+
+Your username should be displayed:
 
 [.console-output]
 [source,subs="attributes"]
@@ -79,11 +85,13 @@ oc whoami
 {ocp4_starter_username}
 ----
 
-Finally, verify that you've got the correct project(s) assigned to you:
+Next, verify that you can view the project(s) assigned to you:
 [source,role="copypaste",subs="attributes"]
 ----
 oc projects
 ----
+
+Output similar to the following example should be displayed:
 
 [.console-output]
 [source,subs="attributes"]
@@ -92,3 +100,5 @@ You have one project on this server: "Workspace ({ocp4_starter_project})".
 
 Using project "{ocp4_starter_project}" on server "{ocp4_starter_api_url}".
 ----
+
+Great! You now have access to OpenShift through both the web console and command line interface. In the following sections, you'll use these tools to deploy and manage applications on the platform.

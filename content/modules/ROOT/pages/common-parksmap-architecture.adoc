@@ -1,20 +1,23 @@
-= Parksmap Architecture
-:navtitle: Parksmap Architecture
+= ParksMap Architecture
+:navtitle: ParksMap Architecture
 
 include::vars.adoc[]
 
-This lab introduces you to the architecture of the ParksMap application used throughout this workshop, to get a better understanding of the things you'll be doing from a developer perspective. ParksMap is a polyglot geo-spatial data visualization application built using the microservices architecture and is composed of a set of services which are developed using different programming languages and frameworks.
+This section introduces you to the architecture of the ParksMap application, which you'll use throughout this workshop. Understanding the architecture will help you better unsderstand the tasks you'll perform from a developer's perspective. ParksMap is a polyglot geo-spatial data visualization application built using a microservices architecture. It consists of multiple services developed using different programming languages and frameworks.
 
 [.bordershadow]
 image::roadshow-app-architecture.png[align="center",link="self",window=_blank]
 
-The main service is a web application which has a server-side component in charge of aggregating the geo-spatial APIs provided by multiple independent backend services and a client-side component in JavaScript that is responsible for visualizing the geo-spatial data on the map. The client-side component which runs in your browser communicates with the server-side via WebSockets protocol in order to update the map in real-time.
+The main service is a web application with two key components:
 
-There will be a set of independent backend services deployed that will provide different mapping and geo-spatial information. The set of available backend services that provide geo-spatial information are:
+1. **Server-side component**: Aggregates geo-spatial APIs provided by multiple independent backend services.
+2. **Client-side component**: Built with JavaScript, it visualizes geo-spatial data on the map and communicates with the server-side using WebSockets to update the map in real-time.
 
-* WorldWide National Parks
+You'll deploy a set of independent backend services that provide various mapping and geo-spatial information, including:
+
+* Worldwide National Parks
 * Major League Baseball Stadiums in North America
 
 The original source code for this application is located link:{ocp4_starter_roadshow_url}[here,window=_blank].
 
-The server-side component of the ParksMap web application acts as a communication gateway to all the available backends. These backends will be dynamically discovered by using service discovery mechanisms provided by OpenShift which will be discussed in more details in the following labs.
+The server-side component of the ParksMap web application acts as a communication gateway to all available backends. These backends are dynamically discovered using service discovery mechanisms provided by OpenShift, which will be discussed in more detail in the following sections.
