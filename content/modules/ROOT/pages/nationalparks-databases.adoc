@@ -3,12 +3,12 @@
 
 include::vars.adoc[]
 
-In this section we will deploy and connect a MongoDB database where the
-`nationalparks` application will store location information.
+In this section, you will deploy and connect a MongoDB database that the
+`nationalparks` application will use to store location information.
 
-Finally, we will mark the `nationalparks` application as a backend for the map
+Finally, you will mark the `nationalparks` application as a backend for the map
 visualization tool, so that it can be dynamically discovered by the `parksmap`
-component using the OpenShift discovery mechanism and the map will be displayed
+component using the OpenShift discovery mechanism and map data will be displayed
 automatically.
 
 [.bordershadow]
@@ -18,66 +18,75 @@ image::roadshow-app-architecture-nationalparks-2.png[link="self",window=_blank]
 == Background: Storage
 
 Most useful applications are "stateful" or "dynamic" in some way, and this is
-usually achieved with a database or other data storage. In this lab we are
-going to add MongoDB to our `nationalparks` application and then rewire it to
-talk to the database using environment variables via a secret.
+usually achieved with a database or other form of data storage. In this workshop section, you are
+going to add MongoDB to your application architecture, and then configure the `nationalparks` Deployment to
+connect to the database. The connection parameters are provided to the Deployment using environment variables using a https://kubernetes.io/docs/concepts/configuration/secret/[Secret, window="_blank"].
 
 [#create_mongodb_instance]
 == Exercise: Deploy MongoDB
 
-The first step is to create Kubernetes *Secrets* which are used to store database-related configuration and credentials.
-In *Workloads* -> *Secrets*, click the *Create* button in the upper right and select *Key/value secret*.
+The first step is to create a *Secret* which is used to store senstive information such as database connection credentials.
+In *Workloads* → *Secrets*, click the *Create* button in the upper right and select *From YAML*.
 
 [.bordershadow]
 image::mongodb_create_secret.png[link="self",window=_blank]
 
-In the dialog, fill in the entries shown below, by *adding four key/value pairs* in total.
+In the editor, paste the following YAML:
 
-* Secret Name -> `mongodb-credentials`
-    - key: `admin-usr` | value: `admin`
-    - key: `admin-pwd` | value: `secret`
-    - key: `app-usr` | value: `parksapp`
-    - key: `app-pwd` | value: `keepsafe`
+[source,role="copypaste",subs="attributes"]
+----
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-credentials
+  namespace: {ocp4_starter_project}
+type: Opaque
+stringData:
+  admin-usr: admin
+  admin-pwd: secret
+  app-usr: parksapp
+  app-pwd: keepsafe
+----
 
 [.bordershadow]
 image::mongodb_create_secret_dialog.png[link="self",window=_blank]
 
 Click the *Create* button at the bottom of the form.
 
-With the secret in place, click on *+* icon from the upper right, as done previsouly for adding the other applications. Choose the tile for adding *Container images* from the options. Fill in the following details:
+With the Secret in place, click the *+* icon in the upper right, as done previously for adding the other applications. Choose the *Container images* option. Fill in the following details:
 
 * Image section:
-    - Image name from external registry -> `mongo:6.0.4`
-    - Runtime icon -> choose `mongodb`
+    - Image name from external registry → `mongo:6.0.4`
+    - Runtime icon → choose `mongodb`
 
 * General section:
-    - Application -> `workshop`
-    - Name -> `mongodb`
+    - Application → `workshop`
+    - Name → `mongodb`
 
 [.bordershadow]
 image::mongodb_deploy_image_image.png[link="self",window=_blank]
 
 * Make sure that the drop-down for resource type is set to the *Deployment* option.
 
-* Click on *Show advanced Deployment option*.
-    - Here, we'll add the following two environment variables which will be sourced from the previously created secret named `mongodb-credentials`.
+* Click *Show advanced Deployment options*.
+    - Here, you'll add the following two environment variables which will be sourced from the previously created secret named `mongodb-credentials`.
     - Click *+Add from ConfigMap or Secret* and enter `MONGO_INITDB_ROOT_USERNAME` as the name. For the value, choose `mongodb-credentials` as resource and `admin-usr` as key.
     - Again, click *+Add from ConfigMap or Secret* and enter `MONGO_INITDB_ROOT_PASSWORD` as the name. For the value, choose `mongodb-credentials` as resource and `admin-pwd` as key.
 
 * Advanced options:
-    - Create a route -> *uncheck* because no route is needed to the DB instance itself
+    - Create a route → *uncheck* because the database will not be accessed by clients outside the OpenShift cluster.
 
 [.bordershadow]
 image::mongodb_deploy_image_general.png[link="self",window=_blank]
 
-Finally click the *Create* button at the bottom of the page to deploy MongoDB into your topology.
+Finally, click the *Create* button at the bottom of the page to deploy a MongoDB container.
 
-The next step is to create a specific user in this MongoDB instance which the nationalparks application will use to create a connection. For this click the *MongoDB deployment* in your topology view, then click on the corresponding *pod* shown in the right view pane.
+The next step is to create a specific user in this MongoDB instance which the nationalparks application will use to create a connection. For this, click the *MongoDB Deployment* in the Topology view, then click on the corresponding *Pod* shown in the right view pane.
 
 [.bordershadow]
 image::mongodb_deployment_topology_pod.png[link="self",window=_blank]
 
-You will end up in the pod details view where you can click *Terminal* to start a terminal session in the underlying container. 
+You will end up in the Pod details view where you can click *Terminal* to start a terminal session in the underlying container.
 
 [.bordershadow]
 image::mongodb_pod_details_terminal.png[link="self",window=_blank]
@@ -89,7 +98,9 @@ Copy and paste the following snippet into the terminal window to create a databa
 mongosh -u admin -p secret --authenticationDatabase admin --eval 'use parksapp' --eval 'db.createUser({user: "parksapp", pwd: "keepsafe", roles: [{ role: "dbAdmin", db: "parksapp" },{ role: "readWrite", db: "parksapp" }]})' --quiet
 ----
 
-If the command is successful you'll see the output below:
+NOTE: In production environments you could modify the container entrypoint or use an https://kubernetes.io/docs/concepts/workloads/pods/init-containers/[init container, window="_blank"] to manage database configuration.
+
+If the command is successful, you'll see the output below:
 
 [.console-output]
 [source]
@@ -97,17 +108,19 @@ If the command is successful you'll see the output below:
 { ok: 1 }
 ----
 
-With that, everything regarding the database is prepared and we can switch our focus back to the nationalparks application. Go back to the *Topology* view, click the *nationalparks deployment* and choose _Actions > Edit Deployment_ from the drop-down in the right view pane. 
+With that, everything regarding the database is prepared and you can switch your focus back to the nationalparks application. Go back to the *Topology* view, click the *nationalparks Deployment* and choose _Actions → Edit Deployment_ from the drop-down in the right view pane.
 
 [.bordershadow]
 image::nationalparks_deployment_edit.png[link="self",window=_blank]
 
-In the *Edit Deployment* dialog, scroll down to the *Environment Variables* section and add the following four entries. First set the server host and the database:
+In the *Edit Deployment* dialog, scroll down to the *Environment Variables* section and add the following four entries. First, set the server host and the database:
 
     - `MONGODB_SERVER_HOST`: `mongodb`
     - `MONGODB_DATABASE`: `parksapp`
 
-The other two are credentials which are sourced from the `mongodb-credentials` secret.
+The `MONGODB_SERVER_HOST` value of `mongodb` will be resolved to the MongoDB *Service* that was created when you deployed the MongoDB container image.
+
+The other two are credentials are sourced from the `mongodb-credentials` Secret.
 
 Click *+Add from ConfigMap or Secret* and enter `MONGODB_USER` as the name. For the value, choose `mongodb-credentials` as resource and `app-usr` as key.
 
@@ -116,17 +129,36 @@ Again, click *+Add from ConfigMap or Secret* and enter `MONGODB_PASSWORD` as the
 [.bordershadow]
 image::nationalparks_deployment_env_vars_secrets.png[link="self",window=_blank]
 
-Finally hit the *Save* button at the bottom of the dialog. This will trigger a re-creation of a new pod and restart the application which should now be able to successfully talk to the MongoDB instance you just deployed earlier.
+Finally, click the *Save* button at the bottom of the dialog. This will trigger a rollout of a new version of the application, which will connect the MongoDB instance you just deployed.
+
+
+[NOTE]
+====
+You are probably wondering how the database connection magically started
+working? When deploying applications to OpenShift, it is always best to create
+environment variables using Secrets or ConfigMaps to define connection parameters to dependent systems. This allows
+for application portability across different environments without without modifying source code. The source file that
+performs the connection as well as creates the database schema can be viewed
+here:
+
+[source,role="copypaste",subs="attributes"]
+----
+{ocp4_starter_openshift_roadshow}/nationalparks/blob/master/src/main/java/com/openshift/evg/roadshow/parks/db/MongoDBConnection.java#L44-l48
+----
+
+Notice that the applicaton catches the exception if the database connection is not defined? This is why you were able to deploy it without it crashing.
+
+====
 
 [#adding_labels]
 == Exercise: Adding Labels
 
-Next, let's fix the labels assigned to the MongoDB deployment. From the *Topology* view, select the MongoDB deployment and choose _Actions > Edit Labels_.
+Next, let's fix the labels assigned to the MongoDB deployment. From the *Topology* view, select the MongoDB deployment and choose _Actions → Edit Labels_.
 
 [.bordershadow]
 image::mongodb_deployment_labels.png[link="self",window=_blank]
 
-Like before, we'll add 3 labels:
+Like before, you'll add 3 labels:
 
 The name of the Application group:
 
@@ -135,14 +167,14 @@ The name of the Application group:
 app=workshop
 ----
 
-Next the name of this deployment.
+Next, the name of this deployment:
 
 [source,role=copypaste]
 ----
 component=nationalparks
 ----
 
-And finally, the role this component plays in the overall application.
+And finally, the role this component plays in the overall application:
 
 [source,role=copypaste]
 ----
@@ -152,10 +184,9 @@ role=database
 [#exploring_openshift_magic]
 == Exercise: Exploring OpenShift Magic
 
-As soon as we connected our database, some
-magic happened. OpenShift decided that this was a significant enough change to
-warrant updating the internal version number of the *ReplicaSet*. You
-can verify this by looking at the output of `oc get rs`:
+After updating the `nationalparks` Deployment with the database connection environment variables, some
+magic happened. OpenShift rolled out a new version of the application that uses the new variables by upating the *ReplicaSet*. You
+can verify this by looking at the output of `oc get rs -l app=nationalparks`:
 
 [.console-output]
 [source]
@@ -164,18 +195,16 @@ NAME                       DESIRED   CURRENT   READY   AGE
 nationalparks-58bd4758fc   0         0         0       4m58s
 nationalparks-7445576cd9   0         0         0       6m42s
 nationalparks-789c6bc4f4   1         1         1       41s
-parksmap-57df75c46d        1         1         1       8m24s
-parksmap-65c4f8b676        0         0         0       18m
 ----
 
-We see that the DESIRED and CURRENT number of instances for the current deployment. The desired and current number of the other instances are 0.
-This means that OpenShift has gracefully torn down our "old" application and
-stood up a "new" instance.
+You can see the DESIRED and CURRENT number of instances for current a prior ReplicaSets. The desired and current number of the previous instances are 0.
+This means that OpenShift has gracefully replaced your previous application Pod with a new Pod that uses the new configuration.
+
 
 [#data_data_everywhere]
 == Exercise: Data, Data, Everywhere
 
-Now that we have a database deployed, we can again visit the `nationalparks` web
+Now that you have a database deployed, you can again visit the `nationalparks` web
 service to query for data:
 
 [source,role="copypaste",subs="attributes"]
@@ -192,10 +221,10 @@ And the result?
 ----
 
 Where's the data? Think about the process you went through. You deployed the
-application and then deployed the database. Nothing actually loaded anything
-*INTO* the database, though.
+application and then deployed the database. Nothing actually loaded data
+*into* the database, though.
 
-The application provides an endpoint to do just that:
+The application provides an endpoint to do just that. Open this URL in your web browser to have make `nationalparks` application insert a sample dataset into MongoDB:
 
 [source,role="copypaste",subs="attributes"]
 ----
@@ -211,7 +240,6 @@ Items inserted in database: 2893
 ----
 
 If you then go back to `/ws/data/all` you will see tons of JSON data now.
-That's great. Our parks map should finally work!
 
 NOTE: There are some errors reported with browsers like Firefox 54 that don't properly parse the resulting JSON. It's
 a browser problem, and the application is working properly.
@@ -221,51 +249,30 @@ a browser problem, and the application is working properly.
 https://parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}
 ----
 
-Hmm... There's just one thing. The main map *STILL* isn't displaying the parks.
-That's because the front end parks map only tries to talk to services that have
+There's just one thing. The main map *still* isn't displaying the parks.
+That's because the frontend only tries to talk to services that have
 the right *Label*.
 
-[NOTE]
-====
-You are probably wondering how the database connection magically started
-working? When deploying applications to OpenShift, it is always best to use
-environment variables, secrets, or configMaps to define connections to dependent systems.  This allows
-for application portability across different environments.  The source file that
-performs the connection as well as creates the database schema can be viewed
-here:
-
-
-[source,role="copypaste",subs="attributes"]
-----
-{ocp4_starter_openshift_roadshow}/nationalparks/blob/master/src/main/java/com/openshift/evg/roadshow/parks/db/MongoDBConnection.java#L44-l48
-----
-
-In short summary: By referring to bindings to connect to services
-(like databases), it can be trivial to promote applications throughout different
-lifecycle environments on OpenShift without having to modify application code.
-
-====
 
 [#working_with_labels]
 == Exercise: Working With Labels
 
-We explored how a *Label* is just a key=value pair earlier when looking at
+You explored how a *Label* is just a key-value pair earlier when looking at
 *Services* and *Routes* and *Selectors*. In general, a *Label* is simply an
-arbitrary key=value pair. It could be anything.
+arbitrary key=value pair, for example:
 
 * `pizza=pepperoni`
 * `pet=dog`
 * `openshift=awesome`
 
-In the case of the parks map, the application is actually querying the OpenShift
+In the case of the parksmap, the application is actually querying the OpenShift
 API and asking about the *Routes* and *Services* in the project. If any of them have a
-*Label* that is `type=parksmap-backend`, the application knows to interrogate
-the endpoints to look for map data.
+*Label* that is `type=parksmap-backend`, the application knows to contact
+the endpoints to query for map data.
 You can see the code that does this
-link:{ocp4_starter_openshift_roadshow}/parksmap-web/blob/master/src/main/java/com/openshift/evg/roadshow/rest/RouteWatcher.java#L20[here,window='_blank'].
+link:{ocp4_starter_openshift_roadshow}/parksmap-web/blob/master/src/main/java/com/openshift/evg/roadshow/rest/RouteWatcher.java#L20[in theRouteWatcher.java file,window='_blank'].
 
-
-Fortunately, the command line provides a convenient way for us to manipulate
+Fortunately, the command line provides a convenient way for you to manipulate
 labels. `describe` the `nationalparks` service:
 
 [source,role=copypaste]
@@ -301,7 +308,7 @@ Weight:                 100 (100%)
 Endpoints:              10.1.9.8:8080
 ----
 
-You see that it already has some labels. Now, use `oc label`:
+You can see that it already has some labels. Use `oc label` to add the label necessary for the RouteWatcher to discover the backend:
 
 [source,role=copypaste]
 ----
@@ -316,7 +323,7 @@ You will see something like:
 route.route.openshift.io/nationalparks labeled
 ----
 
-If you check your browser now:
+Check your browser now by visiting the parksmap URL:
 
 [source,role="copypaste",subs="attributes"]
 ----
