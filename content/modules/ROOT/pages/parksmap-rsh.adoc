@@ -1,12 +1,12 @@
-= Connecting to a Containers
-:navtitle: Connecting to a Containers
+= Connecting to a Container
+:navtitle: Connecting to a Container
 
 include::vars.adoc[]
 
 Containers are treated as immutable infrastructure and therefore it is generally
 not recommended to modify the content of a container through SSH or running custom
 commands inside the container. Nevertheless, in some use-cases, such as debugging
-an application, it might be beneficial to get into a container and inspect the
+an application, it might be beneficial to access a container and inspect the
 application.
 
 [#remote_shell_to_container_using_cli]
@@ -14,15 +14,15 @@ application.
 
 OpenShift allows establishing remote shell sessions to a container without the
 need to run an SSH service inside each container. In order to establish an
-interactive session inside a container, you can use the `oc rsh` command. First
-get the list of available pods:
+interactive session inside a container, you can use the `oc rsh` command. First,
+get the list of available Pods:
 
 [source,role="copypaste"]
 ----
 oc get pods
 ----
 
-You should an output similar to the following:
+You should see an output similar to the following:
 
 [.console-output]
 [source]
@@ -31,14 +31,14 @@ NAME                        READY   STATUS    RESTARTS   AGE
 parksmap-65c4f8b676-fxcrq   1/1     Running   0          52m
 ----
 
-Now you can establish a remote shell session into the pod by using the pod name:
+Now you can establish a remote shell session to the Pod by using the Pod name:
 
 [source,role="copypaste"]
 ----
 oc rsh parksmap-65c4f8b676-fxcrq
 ----
 
-You would see the following output:
+You will see the following output:
 
 [.console-output]
 [source]
@@ -49,11 +49,11 @@ sh-4.2$
 [NOTE]
 ====
 The default shell used by `oc rsh` is `/bin/sh`. If the deployed container does
-not have *sh* installed and uses another shell, (e.g. *A Shell*) the shell command
-can be specified after the pod name in the issued command.
+not have *sh* installed and uses another shell (e.g., *bash*), the shell command
+can be specified after the Pod name in the issued command.
 ====
 
-Run the following command to list the files in the top folder:
+Run the following command to list the files in the root directory:
 
 [source,role="copypaste"]
 ----
@@ -66,25 +66,31 @@ ls /
 anaconda-post.log  bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  parksmap.jar  proc  root  run  sbin  srv  sys  tmp  usr  var
 ----
 
+Remember the default Service Account mentioned previously? You can view the token associated with that Service Account that was injected into the container using the following command:
+
+[source,role="copypaste"]
+----
+cat /var/run/secrets/kubernetes.io/serviceaccount/token
+----
+
 [#remote_shell_session_to_container_using_webconsole]
 == Exercise: Remote Shell Session to a Container Using the Web Console
 
 The OpenShift Web Console also provides a convenient way to access a terminal session on the container without having to use the CLI.
 
-In order to access a pod's terminal via the Web Console, go to the Topology view, click the `parksmap` entry, and then click on the *Pod*. 
+To access a Pod's terminal via the Web Console, go to the Topology view, click the `parksmap` entry, and then click on the *Pod*. 
 
 [.bordershadow]
 image::parksmap-rsh-dev-console-pod.png[link="self",window=_blank]
 
-Once you are viewing the information for the selected pod, click on the *Terminal* tab to open up a shell session.
+Once you are viewing the information for the selected Pod, click on the *Terminal* tab to open a shell session.
 
 [.bordershadow]
 image::parksmap-rsh-applications-pods-terminal.png[link="self",window=_blank]
 
+Go ahead and execute the same commands you did when using the CLI to see how the Web Console-based terminal behaves.
 
-Go ahead and execute the same commands you did when using the CLI to see how the Web Console based terminal behaves.
-
-Before proceeding, close the connection to the pod.
+Before proceeding, close the connection to the Pod:
 
 [source,role="copypaste"]
 ----
@@ -96,24 +102,23 @@ exit
 
 In addition to remote shell, it is also possible to run a command remotely in an
 already running container using the `oc exec` command. This does not require
-that a shell is installed, but only that the desired command is present and in
+a shell to be installed, but only that the desired command is present and in
 the executable path.
 
-In order to show just the JAR file, run the following:
+To show just the `parksmap` application's JAR file, run the following:
 
 [source,role="copypaste"]
 ----
 oc exec parksmap-65c4f8b676-fxcrq -- ls -l /parksmap.jar
 ----
 
-You would see something like the following:
+You should see something like the following:
 
 [.console-output]
 [source]
 ----
 -rw-r--r--. 1 root root 39138901 Apr  1 16:54 /parksmap.jar
 ----
-
 
 [NOTE]
 ====
@@ -122,14 +127,14 @@ end and where the actual command to execute begins. Take a look at `oc exec
 --help` for more details.
 ====
 
-You can also specify the shell commands to run directly with the *oc rsh* command:
+You can also specify the shell commands to run directly with the `oc rsh` command:
 
 [source,role="copypaste"]
 ----
 oc rsh parksmap-65c4f8b676-fxcrq whoami
 ----
 
-You would see something like:
+You will see something like:
 
 [.console-output]
 [source]
@@ -140,9 +145,9 @@ You would see something like:
 [NOTE]
 ====
 It is important to understand that, for security reasons, OpenShift does not run containers as the user specified in the Dockerfile by default. In fact,
-when OpenShift launches a container its user is actually randomized.
+when OpenShift launches a container, its user is actually randomized.
 
-If you want or need to allow OpenShift users to deploy container images that do
+If you need to allow OpenShift users to deploy container images that
 expect to run as root (or any specific user), a small configuration change is
 needed. You can learn more about the
 link:{ocp4_starter_openshift_docs}/html/images/creating-images[container image guidelines,window='_blank'] 

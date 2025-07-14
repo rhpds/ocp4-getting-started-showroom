@@ -10,10 +10,9 @@ web console or via the command line.
 [#container_logs]
 == Background: Container Logs
 
-OpenShift is constructed in such a way that it expects containers to log all
-information to `STDOUT`. In this way, both regular and error information is
-captured via standardized Docker mechanisms. When exploring the *Pod*'s logs
-directly, you are essentially going through the Docker daemon to access the
+OpenShift expects containers to log all information to `STDOUT`. In this way, both regular and error information is
+captured via standardized mechanisms. When exploring the *Pod*'s logs
+directly, you are essentially going through the container runtime to access the
 container's logs, through OpenShift's API.
 
 [NOTE]
@@ -21,52 +20,37 @@ container's logs, through OpenShift's API.
 In some cases, applications may not have been designed to send all of their
 information to `STDOUT` and `STDERR`. In many cases, multiple local log files
 are used. While OpenShift cannot parse any information from these files, nothing
-prevents them from being created, either. In other cases, log information is
-sent to some external system. Here, too, OpenShift does not prohibit these
+prevents them from being created. In other cases, log information is
+sent to some external system. OpenShift does not prohibit these
 behaviors. If you have an application that does not log to `STDOUT`, either because it
-already sends log information to some "external" system or because it writes
-various log information to various files, fear not.
+already sends log information to some external system or because it writes
+log information to various files, don't worry - OpenShift can still work with it.
 ====
 
 [#examining_logs]
 == Exercise: Examining Logs
 
-Since we already deployed our application, we can take some time to examine its
+Since you already deployed your application, you can examine its
 logs. In the *Topology* view, click the `parksmap` entry and then the *Resources* tab. You should see a *View Logs* link next to the *Pod* entry.
 
 [.bordershadow]
 image::parksmap-view-logs-link.png[link="self",window=_blank]
 
-Click the *View Logs* link and you should see a nice view of the *Pod*'s logs:
+Click the *View Logs* link to view the *Pod*'s logs:
 
 [.bordershadow]
 image::parksmap-logging-console-logs.png[link="self",window=_blank]
 
-WARNING: If you notice some errors in the log, that's okay. We'll remedy those in a little bit.
+WARNING: If you notice some errors in the log, that's okay. You'll remedy those shortly.
 
-You also have the option of viewing logs from the command line. Get the name of
-your *Pod*:
-
-[source,role="copypaste"]
-----
-oc get pods
-----
-
-[.console-output]
-[source]
-----
-NAME               READY     STATUS    RESTARTS   AGE
-parksmap-1-hx0kv   1/1       Running   0          5h
-----
-
-And then use the `logs` command to view this *Pod*'s logs:
+You also have the option of viewing logs from the command line. Use the `oc logs` command, and pass a label selector to view logs from all Pods that match the selector:
 
 [source,role="copypaste"]
 ----
-oc logs parksmap-1-hx0kv
+oc logs -l app=parksmap
 ----
 
-You will see all of the application logs scroll on your screen:
+You will see the application logs displayed:
 
 [.console-output]
 [source]
@@ -87,5 +71,4 @@ pleted in 16 ms
 2019-05-22 19:44:13.395  INFO 1 --- [nio-8080-exec-2] c.o.e.roadshow.rest.BackendsController   : Backends: getAll
 ----
 
-WARNING: If you scroll through the logs, you may notice an error that mentions a service account. What's that?  Never fear, we will cover that shortly.
-
+WARNING: If you scroll through the logs, you may notice an error that mentions a service account. What's that? Don't worry, you'll learn about that shortly.

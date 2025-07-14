@@ -3,38 +3,37 @@
 
 include::vars.adoc[]
 
-Projects are a top level concept to help you organize your deployments. An
-OpenShift project allows a community of users (or a user) to organize and manage
-their content in isolation from other communities. Each project has its own
-resources, policies (who can or cannot perform actions), and constraints (quotas
-and limits on resources, etc). Projects act as a "wrapper" around all the
-application services and endpoints you (or your teams) are using for your work.
+== Understanding OpenShift Projects
 
-During this lab, we are going to use a few different commands to make sure that
-things in the environment are working as expected.  Don't worry if you don't
-understand all of the terminology as we will cover it in detail in later labs.
+Projects are a fundamental concept in OpenShift that help you organize and manage your deployments. An OpenShift project allows a group of users (or individual users) to organize and manage their content in isolation from other groups. Each project has its own resources, policies (defining who can or cannot perform actions), and constraints (such as quotas and limits on resources).
 
-== Your First Project
+Think of projects as a "wrapper" around all the application services and endpoints you (or your teams) are using for your work. Under the hood, OpenShift projects are built on top of Kubernetes namespaces, but the project abstractions provide administrators with additional features such as enhanaced role-based access controls (RBAC).
 
-A project named *{ocp4_starter_project}* has already been created for you.
+In this section, you'll explore how to work with projects using both the web console and command line interface. Don't worry if you don't understand all of the terminology—you'll cover these concepts in detail throughout the workshop.
 
-After logging in to the OpenShift web console, locate and select this project. Take a moment to explore the project overview.
+== Exploring Your Project in the Web Console
+
+A project named *{ocp4_starter_project}* has already been created for you. Start by exploring it through the link:{ocp4_starter_console_url}[web console,window='_blank'].
+
+After logging in to the OpenShift web console, locate and select your project from the project dropdown. Take a moment to explore the project overview, which provides a summary of your project's resources and activity.
 
 [.bordershadow]
 image::openshift-console-project.png[link="self",window=_blank]
 
-Familiarize yourself with the Topology perspective. The Topology view offers a visual representation of the applications and their components within your project.
+=== The Topology View
+
+Familiarize yourself with the Topology perspective, which offers a visual representation of the applications and their components within your project.
 
 From the left menu, navigate to *Workloads* and then to *Topology*.
-
-At this stage, you will not see any applications or components. As you progress through the lab, you will be able to visualize and interact with your application's components in the *Topology* view.
 
 [.bordershadow]
 image::openshift-console-topology.png[link="self",window=_blank]
 
-== Switching to Your Project in the CLI
+Currently, you won't see any applications or components since nothing has been deployed yet. As you progress through the workshop, you'll be able to visualize and interact with your application's components in this *Topology* view.
 
-You can also interact with your project using the command line.
+== Working with Your Project via the Command Line
+
+You can also interact with your project using the OpenShift CLI, which provides powerful automation capabilities and access to advanced features.
 
 In your web terminal, switch to your project using the following command:
 
@@ -51,5 +50,10 @@ You should see output similar to the following:
 Now using project "{ocp4_starter_project}" on server "{ocp4_starter_api_url}"
 ----
 
-We will be using a mix of command line tooling and the web console for the labs.
-Get ready!
+This command sets your current context to work within your assigned project. All subsequent `oc` commands will operate within this project scope unless you specify otherwise.
+
+== Next Steps
+
+Throughout this workshop, you'll use both the web console and command line interface to deploy and manage applications within your project. The web console provides an intuitive visual interface for common tasks, while the CLI offers powerful automation capabilities for more advanced operations.
+
+Now that you're familiar with your project and how to access it through both interfaces, you're ready to start deploying applications!

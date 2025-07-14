@@ -3,7 +3,7 @@
 
 include::vars.adoc[]
 
-In this lab, we're going to make our application visible to the end users, so they can access it.
+In this workshop section, you will make your application accessible to external users.
 
 [.bordershadow]
 image::roadshow-app-architecture-parksmap-2.png[link="self",window=_blank]
@@ -13,11 +13,10 @@ image::roadshow-app-architecture-parksmap-2.png[link="self",window=_blank]
 
 While *Services* provide internal abstraction and load balancing within an
 OpenShift environment, sometimes clients (users, systems, devices, etc.)
-**outside** of OpenShift need to access an application. The way that external
-clients are able to access applications running in OpenShift is through the
-OpenShift routing layer. And the data object behind that is a *Route*.
+**outside** of OpenShift need to access an application. External clients access applications running in OpenShift through the
+OpenShift routing layer, which can be configured using a *Route* object.
 
-The default OpenShift router (HAProxy) uses the HTTP header of the incoming
+The default OpenShift router (https://www.haproxy.org/[HAProxy, window="_blank"]) uses the HTTP header of the incoming
 request to determine where to proxy the connection. You can optionally define
 security, such as TLS, for the *Route*. If you want your *Services*, and, by
 extension, your *Pods*, to be accessible from the outside world, you need to
@@ -26,10 +25,10 @@ create a *Route*.
 [#creating_a_route]
 == Exercise: Creating a Route
 
-You may remember that when we deployed the `parksmap` application, we un-checked the checkbox to 
-create a *Route*. Normally it would have been created for us automatically. Fortunately, creating a *Route* is a pretty straight-forward process. 
+You may remember that when you deployed the `parksmap` application, you unchecked the checkbox to 
+create a *Route*. Normally it would have been created automatically. Fortunately, creating a *Route* is a straightforward process. 
 
-You can create a Route either from the OpenShift Console or using the `oc` CLI.  Use the tabs to choose your desired approach for adding the route.
+You can create a Route either from the OpenShift Console or using the `oc` CLI. Use the tabs to choose your desired approach for adding the route.
 
 [tabs]
 ====
@@ -44,15 +43,15 @@ OpenShift Console::
 +
 image::parksmap-route-create-1.png[link="self",window=_blank]
 
-TIP: The TLS certificate for cluster Apps domains is used by default, so you don't need to add any certificate. In case you would like a custom domain resolving to OpenShift Nodes hosting Routers, you can add certificates also on a per-route basis.
+TIP: The TLS certificate for cluster Apps domains is used by default, so you don't need to add any certificate. If you want to use a custom domain resolving to your OpenShift cluster, you can add certificates on a per-route basis.
 
-When creating a *Route*, some other options can be provided, like the hostname and path for the *Route* or the other TLS configurations.
+When creating a *Route*, you can specify other options, such as the hostname and path for the *Route* or additional TLS configurations.
 
 --
 `oc` Command Line::
 +
 --
-We are looking to simply `expose` the *Service*, but first we need to verify that we don't already have any existing *Routes*:
+To `expose` the *Service*, first verify that you don't already have any existing *Routes*:
 
 [source,role="copypaste"]
 ----
@@ -65,7 +64,7 @@ oc get routes
 No resources found.
 ----
 
-Now we need to get the *Service* name to expose:
+Now you need to get the *Service* name to expose:
 
 [source,role="copypaste"]
 ----
@@ -79,7 +78,7 @@ NAME       CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 parksmap   172.30.169.213   <none>        8080/TCP   5h
 ----
 
-Once we know the *Service* name, creating a *Route* is a simple one-command task:
+Once you know the *Service* name, creating a *Route* is a simple one-command task:
 
 [source,role="copypaste"]
 ----
@@ -108,14 +107,14 @@ NAME       HOST/PORT                                                           P
 parksmap   parksmap-{ocp4_starter_project}.{ocp4_starter_apps_domain}          parksmap   8080-tcp   edge          None
 ----
 
-You can also verify the *Route* in the *Topology* view under the *Resources* tab for your `parksmap` deployment configuration. Also note that there is a decorator icon on the `parksmap` visualization now. If you click that, it will open the URL for your *Route* in a browser.
+You can also verify the *Route* in the *Topology* view under the *Resources* tab for your `parksmap` Deployment. Note that there is now an arrow icon on the `parksmap` node in the Topology. If you click that, it will open the URL for your *Route* in a browser.
 
 [.bordershadow]
 image::parksmap-route-created.png[link="self",window=_blank]
 
-This application is now available at the URL shown in the Developer Perspective. Click the link and you will see it.
+The application is now available at the URL shown in the Developer Perspective. Click the link and you will see it.
 
-NOTE: If this is the first time opening this page, the browser will ask permission to get your position. This is needed by the Frontend app to center the world map to your location, if you don't allow it, it will just use a default location.
+NOTE: If this is the first time opening this page, the browser will ask permission to get your position. This is needed by the frontend app to center the world map to your location. If you don't allow it, the app will use a default location.
 
 [.bordershadow]
 image::parksmap-route-empty-map.png[link="self",window=_blank]
