@@ -1,6 +1,6 @@
 # OpenShift 4 Getting Started Workshop - Automation Script
 
-This script (`run-ocp4-lab.sh`) automates the entire OpenShift 4 Getting Started Workshop end-to-end, executing all the hands-on lab steps using `oc` CLI commands.
+This script (`autopilot.sh`) automates the entire OpenShift 4 Getting Started Workshop end-to-end, executing all the hands-on lab steps using `oc` CLI commands.
 
 ## Overview
 
@@ -44,12 +44,12 @@ The script will display a summary of your configuration and ask for confirmation
 
 1. **Make the script executable:**
    ```bash
-   chmod +x run-ocp4-lab.sh
+   chmod +x autopilot.sh
    ```
 
 2. **Run the script:**
    ```bash
-   ./run-ocp4-lab.sh
+   ./autopilot.sh
    ```
 
 The script will:

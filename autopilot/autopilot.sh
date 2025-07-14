@@ -1,9 +1,14 @@
 #!/bin/bash
 
+set -e
+
 # OpenShift 4 Getting Started Workshop - End-to-End Automation Script
 # This script automates the entire hands-on lab as described in the workshop content
 
-set -e
+# OPENSHIFT_SERVER=https://api.cluster.example.com:6443
+# OPENSHIFT_USER=user1
+# OPENSHIFT_PASSWORD=password
+# GITEA_URL=https://gitea.apps.cluster-example.com
 
 # Color codes for output (defined early for input prompts)
 RED='\033[0;31m'
@@ -29,45 +34,55 @@ print_error() {
     echo -e "${RED}✗ $1${NC}"
 }
 
-
-OPENSHIFT_SERVER=https://api.cluster-4fcmw.dynamic.redhatworkshops.io:6443
-OPENSHIFT_USER=user1
-OPENSHIFT_PASSWORD=OTAxODMy
-GITEA_URL=https://gitea.apps.cluster-4fcmw.dynamic.redhatworkshops.io
-
 # Interactive configuration - prompt for user input
 print_step "OpenShift 4 Getting Started Workshop - Configuration"
 echo ""
 echo "Please provide the following configuration details:"
 echo ""
 
-# # OpenShift Cluster Configuration
-# read -p "OpenShift API Server URL (e.g., https://api.cluster.example.com:6443): " OPENSHIFT_SERVER
-# if [ -z "$OPENSHIFT_SERVER" ]; then
-#     print_error "OpenShift server URL is required"
-#     exit 1
-# fi
+# OpenShift Cluster Configuration
+if [ -z "$OPENSHIFT_SERVER" ]; then
+    read -p "OpenShift API Server URL (e.g., https://api.cluster.example.com:6443): " OPENSHIFT_SERVER
+else
+    echo "Using pre-configured OpenShift Server: $OPENSHIFT_SERVER"
+fi
+if [ -z "$OPENSHIFT_SERVER" ]; then
+    print_error "OpenShift server URL is required"
+    exit 1
+fi
 
-# read -p "OpenShift Username: " OPENSHIFT_USER
-# if [ -z "$OPENSHIFT_USER" ]; then
-#     print_error "OpenShift username is required"
-#     exit 1
-# fi
+if [ -z "$OPENSHIFT_USER" ]; then
+    read -p "OpenShift Username: " OPENSHIFT_USER
+else
+    echo "Using pre-configured OpenShift User: $OPENSHIFT_USER"
+fi
+if [ -z "$OPENSHIFT_USER" ]; then
+    print_error "OpenShift username is required"
+    exit 1
+fi
 
-# read -p "OpenShift Password: " OPENSHIFT_PASSWORD
-# echo ""
-# if [ -z "$OPENSHIFT_PASSWORD" ]; then
-#     print_error "OpenShift password is required"
-#     exit 1
-# fi
+if [ -z "$OPENSHIFT_PASSWORD" ]; then
+    read -p "OpenShift Password: " OPENSHIFT_PASSWORD
+    echo ""
+else
+    echo "Using pre-configured OpenShift Password: [HIDDEN]"
+    echo ""
+fi
+if [ -z "$OPENSHIFT_PASSWORD" ]; then
+    print_error "OpenShift password is required"
+    exit 1
+fi
 
-# # Gitea Configuration
-# echo ""
-# read -p "Gitea URL (e.g., https://gitea.apps.cluster.example.com): " GITEA_URL
-# if [ -z "$GITEA_URL" ]; then
-#     print_error "Gitea URL is required"
-#     exit 1
-# fi
+# Gitea Configuration
+if [ -z "$GITEA_URL" ]; then
+    read -p "Gitea URL (e.g., https://gitea.apps.cluster.example.com): " GITEA_URL
+else
+    echo "Using pre-configured Gitea URL: $GITEA_URL"
+fi
+if [ -z "$GITEA_URL" ]; then
+    print_error "Gitea URL is required"
+    exit 1
+fi
 
 # Derived and default configuration
 GITEA_USER="${OPENSHIFT_USER}"
