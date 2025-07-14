@@ -65,7 +65,7 @@ if [ -z "$OPENSHIFT_PASSWORD" ]; then
     read -p "OpenShift Password: " OPENSHIFT_PASSWORD
     echo ""
 else
-    echo "Using pre-configured OpenShift Password: [HIDDEN]"
+    echo "Using pre-configured OpenShift Password: $OPENSHIFT_PASSWORD"
     echo ""
 fi
 if [ -z "$OPENSHIFT_PASSWORD" ]; then

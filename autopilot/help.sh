@@ -17,12 +17,12 @@ OpenShift Cluster Details:
 - OpenShift API Server URL (e.g., https://api.your-cluster.example.com:6443)
 - OpenShift Apps Domain (e.g., apps.your-cluster.example.com)
 - OpenShift Username
-- OpenShift Password (entered securely)
+- OpenShift Password
 
 Gitea Repository Details:
 - Gitea URL (e.g., https://gitea.apps.your-cluster.example.com)
 - Gitea Username  
-- Gitea Password (entered securely)
+- Gitea Password
 
 The script will show a summary and ask for confirmation before proceeding.
 EOF
