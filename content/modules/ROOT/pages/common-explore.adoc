@@ -65,6 +65,7 @@ This command authenticates you to the cluster using your username and password.
 
 TIP: Alternatively, you can use a token for authentication. To obtain a token, use the **Copy login command** option in the OpenShift Web Console as shown.
 
+[.bordershadow]
 image::openshift-console-login-command.png[link="self",window=_blank]
 
 === Verifying Your Access

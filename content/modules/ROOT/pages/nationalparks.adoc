@@ -80,6 +80,7 @@ Let's use it with a simple link:{ocp4_starter_openshift_roadshow}/nationalparks.
 
 In the Topology view, click the *+* button in the header, and select *Import from Git*.
 
+[.bordershadow]
 image::nationalparks-show-add-options.png[link="self",window=_blank]
 
 The *Import from Git* workflow will guide you through the process of deploying your app based on a few selections.
@@ -95,6 +96,7 @@ OpenShift will automatically determine the programming language used by the sour
 
 Click *Edit Import Strategy*.
 
+[.bordershadow]
 image::nationalparks-import-strategy.png[width=500,link="self",window=_blank]
 
 You have three options: 
@@ -105,6 +107,7 @@ You have three options:
 
 Select *Builder Image* as you are going to create the container image from the source code, as discussed in the next section.
 
+[.bordershadow]
 image::nationalparks-import-strategy-build.png[link="self",window=_blank]
 
 TIP: You could also use Dockerfile, as the repo contains a multi-stage Dockerfile. The goal of this exercise is to experience the Builder Image feature in OpenShift.
