@@ -33,13 +33,11 @@ The parksmap application wants to talk to the OpenShift API to learn about other
 
 The parksmap application runs as a *Service Account* in your project on the cluster: namely the `default` *Service Account*. You can grant the necessary `view` access to this *Service Account* to allow it to query the API and see what resources are within the *Project*. This addresses the cause of the error message you saw previously in the logs.
 
-Choose an approach represented by the following tabs to update the `default` *Service Account* in the `{ocp4_starter_project}` project:
+Choose one of the options below - either *OpenShift Console* or *`oc` command line* — to update the `default` *Service Account* in the `{ocp4_starter_project}` project:
 
-[tabs]
 ====
-OpenShift Console::
-+
---
+*OPTION A: OpenShift Console:*
+
 . Go to *Home* -> *Projects* -> *{ocp4_starter_project}*, then *Role Bindings* and then click the *Create Binding* button.
 +
 image::parksmap-permissions-membership-serviceaccount-list.png[link="self",window=_blank]
@@ -51,10 +49,9 @@ image::parksmap-permissions-membership-serviceaccount-edit.png[link="self",windo
 . Once you're finished editing permissions, click on the *Create* button. You should then be able to see the new `view` item in the *RoleBindings* list for the `{ocp4_starter_project}` project.
 +
 image::parksmap-permissions-membership-serviceaccount-done.png[link="self",window=_blank]
---
-`oc` Command Line::
-+
---
+
+*OPTION B: `oc` command line:*
+
 First, confirm you're in the right project context:
 
 [source,role="copypaste",subs="attributes"]
@@ -84,7 +81,7 @@ entire string, which, in this case, is
 ****
 
 NOTE: The `-z` flag will only work for service accounts in the *current* project. If you're referring to a service account in a different project, use the `-n <project>` switch.
---
+
 ====
 
 [#redeploy_application]

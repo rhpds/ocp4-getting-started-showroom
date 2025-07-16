@@ -28,13 +28,11 @@ create a *Route*.
 You may remember that when you deployed the `parksmap` application, you unchecked the checkbox to 
 create a *Route*. Normally it would have been created automatically. Fortunately, creating a *Route* is a straightforward process. 
 
-You can create a Route either from the OpenShift Console or using the `oc` CLI. Use the tabs to choose your desired approach for adding the route.
+You can create a Route either from the OpenShift Console or using the `oc` CLI. Use one of the options below to choose your desired approach for adding the route.
 
-[tabs]
 ====
-OpenShift Console::
-+
---
+*OPTION A: OpenShift Console:*
+
 . Click *Networking -> Routes* and then the *Create Route* button.
 . Insert *parksmap* in *Name* field.
 . From *Service* field, select *parksmap*. For *Target Port*, select *8080*.
@@ -47,10 +45,8 @@ TIP: The TLS certificate for cluster Apps domains is used by default, so you don
 
 When creating a *Route*, you can specify other options, such as the hostname and path for the *Route* or additional TLS configurations.
 
---
-`oc` Command Line::
-+
---
+*OPTION B: `oc` Command Line:*
+
 To `expose` the *Service*, first verify that you don't already have any existing *Routes*:
 
 [source,role="copypaste"]
@@ -91,7 +87,6 @@ oc create route edge parksmap --service=parksmap
 route.route.openshift.io/parksmap created
 ----
 
---
 ====
 
 Verify the *Route* was created with the following command:
