@@ -112,7 +112,7 @@ In the next screen, paste your link into the "Payload URL" field.
 
 Change the `Content Type` to `application/json`.
 
-Finally, click on *Add Webhook*.
+Finally, click on *Update Webhook*.
 
 [.bordershadow]
 image::nationalparks-codechanges-config-webhook.png[link="self",window=_blank]
