@@ -42,7 +42,12 @@ Choose one of the options below - either *OpenShift Console* or *`oc` command li
 +
 image::parksmap-permissions-membership-serviceaccount-list.png[link="self",window=_blank]
 +
-. Configure the following fields: Role Binding Name: *view*, Namespace: *{ocp4_starter_project}*, Role Name: *view*, Subject: *Service Account*, Subject Namespace: *{ocp4_starter_project}*, Subject Name: *default*.
+. Configure the following fields:
+  * Role Binding Name: *view*
+  * Namespace: *{ocp4_starter_project}*
+  * Role Name: *view*, Subject: *Service Account*
+  * Subject Namespace: *{ocp4_starter_project}*
+  * Subject Name: *default*.
 +
 image::parksmap-permissions-membership-serviceaccount-edit.png[link="self",window=_blank]
 +
