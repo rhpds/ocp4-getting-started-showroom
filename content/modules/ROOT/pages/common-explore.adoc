@@ -48,8 +48,8 @@ You should see output similar to this:
 [source,subs="attributes"]
 ----
 Client Version: {ocp4_starter_cli_version}
-Server Version: {ocp4_starter_server_version}
-Kubernetes Version: {ocp4_starter_k8s_version}
+Kustomize Version: v5.0.1
+Kubernetes Version: v1.32.5
 ----
 
 === Logging in with the CLI

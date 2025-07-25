@@ -9,7 +9,7 @@
 :ocp4_starter_gitea_url: {gitea_console_url}
 :ocp4_starter_gitea_password: {gitea_password}
 :ocp4_starter_gitea_user: {gitea_user}
-:ocp4_starter_cli_version: 4.14.0
+:ocp4_starter_cli_version: 4.14.40
 :ocp4_starter_server_version: 4.19.0
 :ocp4_starter_k8s_version: v1.32.5
 :ocp4_starter_api_url: https://api.cluster.example.com:6443
