@@ -63,6 +63,11 @@ Authenticate with the OpenShift cluster using the command line:
 
 This command authenticates you to the cluster using your username and password. 
 
+NOTE: If you get a message "certificate signed by unknown authority", you can ignore it for this workshop environment.
+It indicates that the cluster's API certificate is self-signed, which is common in development and testing environments.
+
+[.bordershadow]
+
 TIP: Alternatively, you can use a token for authentication. To obtain a token, use the **Copy login command** option in the OpenShift Web Console as shown.
 
 [.bordershadow]
