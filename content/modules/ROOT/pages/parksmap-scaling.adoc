@@ -52,7 +52,7 @@ parksmap-65c4f8b676   1         1         1       21m
 
 This output shows that you currently expect one *Pod* to be deployed (`Desired`), and you have one *Pod* actually deployed (`Current`). By changing the desired number, you can tell OpenShift that you want more or fewer *Pods*.
 
-TIP: OpenShift's *HorizontalPodAutoscaler* monitors the CPU usage of a set of Pods and can the RCs to ensure application stability by adding more instances. You can learn more about the CPU-based link:{ocp4_starter_openshift_docs}/html/nodes/working-with-pods#nodes-pods-autoscaling[Horizontal Pod Autoscaler in the documentation,window='_blank'].
+TIP: OpenShift's *HorizontalPodAutoscaler* monitors the CPU usage of a set of Pods and can update the RCs to ensure application stability by adding more instances. You can learn more about the CPU-based link:{ocp4_starter_openshift_docs}/html/nodes/working-with-pods#nodes-pods-autoscaling[Horizontal Pod Autoscaler in the documentation,window='_blank'].
 
 [#scaling_the_application]
 == Exercise: Scaling the Application
@@ -175,9 +175,9 @@ oc delete pod parksmap-7dfd599cd7-vgc7z && oc get pods
 [source]
 ----
 pod "parksmap-65c4f8b676-k5gkk" deleted
-NAME                        READY   STATUS    RESTARTS   AGE
-parksmap-65c4f8b676-bjz5g   1/1     Running   0          13s
-parksmap-65c4f8b676-fxcrq   1/1     Running   0          4m48s
+NAME                        READY   STATUS            RESTARTS     AGE
+parksmap-65c4f8b676-bjz5g   1/1     ContainerCreating   0          9s
+parksmap-65c4f8b676-fxcrq   1/1     Running             0          4m48s
 ----
 
 Did you notice anything? One container has been deleted, but a new container is already being created in its place.
