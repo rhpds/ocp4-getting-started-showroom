@@ -1,17 +1,44 @@
 = Welcome to the OpenShift Getting Started Workshop
+:navtitle: Overview
 
 include::vars.adoc[]
 
-image::openshift-logo.png[OpenShift Logo, 400]
+== Overview
 
-== What is OpenShift?
+This workshop provides a hands-on introduction to OpenShift from a developer's perspective. Through practical, interactive exercises, you'll learn how to build, deploy, and manage containerized applications on the OpenShift platform.
 
-link:https://www.redhat.com/en/technologies/cloud-computing/openshift[OpenShift,window='_blank'] is a container-based application platform that enables development teams to deploy, manage, and scale their applications across any infrastructure—whether on-premises, public cloud, or hybrid environments.
+== What You'll Learn
 
-== What is a Container?
+*Getting Started with OpenShift:*
 
-link:https://www.redhat.com/en/topics/containers/whats-a-linux-container-vb[Containers,window='_blank'] are a standardized way to package applications along with all their dependencies. This approach simplifies deployment and accelerates delivery. Unlike virtual machines, containers do not include an entire operating system. Only the application, runtime, libraries, and configuration are packaged inside the container. This makes containers a more lightweight, portable, and efficient deployment model compared to virtual machines.
+* Use the OpenShift command line client and web console
+* Navigate the OpenShift developer interface and understand key concepts
 
-Building on this container foundation, link:https://openshift.com/[OpenShift,window='_blank'] enables efficient application development by providing a complete platform that streamlines workflows and includes validated integrations - making it ideal for development teams looking to accelerate their projects and organizations looking for a standardized application platform.
+*Application Deployment and Management:*
 
-This workshop is accompanied by a slide deck available at link:https://dn.dev/openshift-workshop[dn.dev/openshift-workshop,window='_blank']
+* Deploy applications using pre-existing container images
+* Deploy applications directly from source code in Git repositories
+* Work with application labels to identify and organize components
+* Scale applications to handle varying traffic loads
+
+*Networking and Access:*
+
+* Expose applications to external users through routes
+* Configure application networking and service discovery
+
+*Monitoring and Troubleshooting:*
+
+* View and analyze application logs for debugging
+* Access application containers for direct interaction and troubleshooting
+
+*Database Integration:*
+
+* Deploy databases from the OpenShift service catalog
+* Configure applications to connect to and use databases
+
+*Collaboration and Automation:*
+
+* Grant access to other users for collaborative development
+* Set up webhooks to enable automated application builds from code changes
+
+NOTE: While this workshop uses Java applications, the concepts and techniques apply to applications built with .NET, Node.js, Python, and other runtimes.

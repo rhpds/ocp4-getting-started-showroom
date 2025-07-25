@@ -1,4 +1,4 @@
-* xref:common-workshop-summary.adoc[Workshop Summary]
+* xref:common-workshop-intro.adoc[Introduction]
 * xref:common-environment.adoc[OpenShift Architecture]
 * xref:common-explore.adoc[Explore OpenShift]
 ** xref:common-explore.adoc#the_web_console[The Web Console]
