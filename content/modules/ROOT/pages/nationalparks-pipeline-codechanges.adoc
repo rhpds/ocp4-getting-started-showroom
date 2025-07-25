@@ -31,10 +31,11 @@ Let's see each component in detail:
 * *TriggerBinding*: validates events and extracts payload fields
 * *EventListener*: connects `TriggerBindings` and `TriggerTemplates` into an addressable endpoint (the event sink). It uses the extracted event parameters from each TriggerBinding (and any supplied static parameters) to create the resources specified in the corresponding TriggerTemplate. It also optionally allows an external service to pre-process the event payload via the interceptor field.
 
-Now let's create them all together for our Pipeline. Depending on which language you chose, you can use the following YAML files:
+Now let's create them all together for our Pipeline.
+// Depending on which language you chose, you can use the following YAML files:
 
-====
-*Java*
+// ====
+// *Java*
 
 [source,role="copypaste",subs="attributes"]
 ----
@@ -61,7 +62,7 @@ oc create -f {ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks/ra
 // ----
 // oc create -f {ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks-py/master/pipelines/nationalparks-triggers-all.yaml -n {ocp4_starter_project}
 // ----
-====
+// ====
 
 This will create a new Pod with a Route that we can use to setup our Webhook on GitHub to trigger the automatic start of the Pipeline.
 
@@ -92,7 +93,7 @@ Sign-in using the button on the top right of the screen.
 
 Your Gitea credentials are:
 
-[source,role=copypaste,subs=attributes]
+[source,subs=attributes]
 ----
 username: {ocp4_starter_gitea_user}
 password: {ocp4_starter_gitea_password}
@@ -127,7 +128,7 @@ this out.
 Next, we will use Gitea to edit a file, commit and push the changes.
 
 Let's open the `BackendController.java` file
-link:https://{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks/src/branch/master/src/main/java/com/openshift/evg/roadshow/parks/rest[located here in the gitea repository,window='_blank'].
+link:{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks/src/branch/master/src/main/java/com/openshift/evg/roadshow/parks/rest[located here in the gitea repository,window='_blank'].
 
 This is the url location in case you want to copy and paste it into your browser:
 
