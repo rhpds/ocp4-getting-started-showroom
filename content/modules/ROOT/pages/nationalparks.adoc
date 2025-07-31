@@ -136,7 +136,19 @@ Under *Advanced Options*, ensure *Create a route* is *checked*. You are going to
 
 Click *Show advanced Routing options*. Leave all default options, then go to the *Security* section. Check the *Secure Route* option. Under *TLS termination*, select *Edge*.
 
+[.bordershadow]
+image::nationalparks-configure-service1.png[link="self",window=_blank]
+
+[.bordershadow]
+image::nationalparks-configure-service2.png[link="self",window=_blank]
+
 Scroll down and expand the *Labels* section to add 3 labels.
+
+[.bordershadow]
+image::nationalparks-configure-service4.png[link="self",window=_blank]
+
+[.bordershadow]
+image::nationalparks-configure-service3.png[link="self",window=_blank]
 
 The name of the Application group:
 
@@ -160,15 +172,6 @@ role=backend
 ----
 
 Click *Create* to submit.
-
-[.bordershadow]
-image::nationalparks-configure-service1.png[link="self",window=_blank]
-
-[.bordershadow]
-image::nationalparks-configure-service2.png[link="self",window=_blank]
-
-[.bordershadow]
-image::nationalparks-configure-service3.png[link="self",window=_blank]
 
 [#monitoring-the-build]
 === Monitoring the Build
