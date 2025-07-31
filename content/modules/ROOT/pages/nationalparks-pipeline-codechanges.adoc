@@ -76,14 +76,6 @@ image::devops-pipeline-triggers-eventlistener.png[width=500,link="self",window=_
 
 In this section you can use a build webhook to trigger a pipeline execution every time there is a change in the nationalparks Gitea repository.
 
-We will use the EventListener we created in the previous section to configure a webhook in Gitea. The `EventListener`` has an OpenShift `Route` exposed
-that we are going to use as the URL for the webhook.
-
-[source,role=copypaste,subs=attributes]
-----
-http://el-nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/
-----
-
 Once you have the URL copied to your clipboard, navigate to the code repository
 that you have on Gitea:
 
@@ -109,7 +101,15 @@ Click on *Webhooks*, then the *Add Webhook* button, and finally select *Gitea*.
 [.bordershadow]
 image::nationalparks-codechanges-add-webhook.png[link="self",window=_blank]
 
-In the next screen, paste your link into the "Payload URL" field.
+We will use the EventListener we created in the previous section to configure a webhook in Gitea.
+The `EventListener` has an OpenShift `Route` exposed that we are going to use as the URL for the webhook.
+
+[source,role=copypaste,subs=attributes]
+----
+http://el-nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/
+----
+
+Paste your link into the "Payload URL" field.
 
 Change the `Content Type` to `application/json`.
 
