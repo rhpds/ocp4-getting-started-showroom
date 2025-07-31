@@ -159,8 +159,11 @@ return new Backend("nationalparks","Amazing National Parks", new Coordinates("47
 Click on Commit changes at the bottom of the screen. Feel free to enter a commit
 message.
 
-Once you have committed your changes, a *Build* should almost instantaneously be
-triggered in OpenShift. From the *Topology* view, click `nationalparks` and look at the *Builds* section of the *Resources* tab, or, run the
+Once you have committed your changes, a new *PipelineRun* should be triggered automatically.
+
+You have seen the PipelineRun in the previous exercise. It creates a new *Build* and deploys the application to OpenShift. Let's check this!
+
+From the *Topology* view, click `nationalparks` and look at the *Builds* section of the *Resources* tab, or, run the
 following command to verify:
 
 [source,role="copypaste"]
