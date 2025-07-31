@@ -546,7 +546,15 @@ We can now start the Pipeline from the Web Console. Go to left-side menu, click 
 [.bordershadow]
 image::devops-pipeline-start-1.png[link="self",window=_blank]
 
-You will be prompted with parameters to add the Pipeline, showing default ones. Your appropriate values are already preconfigured depending on which language's pipeline you chose. However, in *Workspaces* -> select *PersistentVolumeClaim* from the list, and then select *app-source-pvc*. This is the share volume used by Pipeline Tasks in your Pipeline containing the source code and compiled artifacts. Click on *Start* to run your Pipeline.
+You will be prompted with parameters to add the Pipeline, showing default ones. Your appropriate values are already preconfigured.
+
+In *Workspaces* -> *app-source*, select *PersistentVolumeClaim* from the list, and then select *app-source-pvc*. This is the share volume used by Pipeline Tasks in your Pipeline containing the source code and compiled artifacts.
+
+In *Workspaces* -> *maven-settings*, leave it as *Empty Directory*.
+
+[.bordershadow]
+
+Click on *Start* to run your Pipeline.
 
 [.bordershadow]
 image::devops-pipeline-start-2.png[link="self",window=_blank]
