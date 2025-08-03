@@ -263,7 +263,7 @@ environment. That's okay, as you will learn how to use *Routes* to adddress this
 A *Service* maps to a set of *Pods* using a *Selector*. The *Selector* uses *Labels* to determine which Pods should receive traffic. 
 
 There is a lot more information about
-link:{ocp4_starter_openshift_docs}/html/networking/networking-overview[Services,window='_blank'],
+link:{ocp4_starter_openshift_docs}/html/networking_overview[Services,window='_blank'],
 including the YAML format to make one by hand, in the official OpenShift documentation.
 
 Now that you understand the basics of what a *Service* is, take a look at

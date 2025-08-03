@@ -123,7 +123,7 @@ repository, a new build and deploy will occur inside of OpenShift. Let's try
 this out.
 
 [#using_webhooks]
-== Exercise: Using Gogs Web Hooks
+== Exercise: Using Gitea Web Hooks
 
 Next, we will use Gitea to edit a file, commit and push the changes.
 
