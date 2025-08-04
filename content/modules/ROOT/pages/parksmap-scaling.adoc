@@ -52,7 +52,7 @@ parksmap-65c4f8b676   1         1         1       21m
 
 This output shows that you currently expect one *Pod* to be deployed (`Desired`), and you have one *Pod* actually deployed (`Current`). By changing the desired number, you can tell OpenShift that you want more or fewer *Pods*.
 
-TIP: OpenShift's *HorizontalPodAutoscaler* monitors the CPU usage of a set of Pods and can update the RCs to ensure application stability by adding more instances. You can learn more about the CPU-based link:{ocp4_starter_openshift_docs}/html/nodes/working-with-pods#nodes-pods-autoscaling[Horizontal Pod Autoscaler in the documentation,window='_blank'].
+TIP: OpenShift's *HorizontalPodAutoscaler (HPA)* can monitor the CPU and memory usage of a set of Pods and can update the RCs to ensure application stability by adding more instances. You can learn more about link:{ocp4_starter_openshift_docs}/html/nodes/working-with-pods#nodes-pods-autoscaling[Horizontal Pod Autoscalers in the documentation,window='_blank'].
 
 [#scaling_the_application]
 == Exercise: Scaling the Application
