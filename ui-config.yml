@@ -1,0 +1,12 @@
+---
+type: showroom
+
+# Set the left column width to 50%
+default_width: 50
+# Persist the URL state so browser refresh doesn't reset the UI
+persist_url_state: true
+
+tabs:
+  - name: Terminal
+    path: /terminal
+    port: 443
