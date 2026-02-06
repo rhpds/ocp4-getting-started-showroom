@@ -1,6 +1,6 @@
 name: modules
 title: OCP4 Getting Started Workshop
-version: main
+version: master
 nav:
   - modules/ROOT/nav.adoc
 
