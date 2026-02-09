@@ -15,7 +15,7 @@ Let's start by doing the simplest thing possible - get a plain old
 Docker - formatted image to run on OpenShift. This is incredibly simple to do.
 With OpenShift it can be done directly from the web console.
 
-Return to the {ocp4_starter_console_url}/topology/ns/{ocp4_starter_project}[topology view, link="self",window=_blank] in the *{ocp4_starter_project}* project.
+In the *OCP Console* tab, navigate to the *Topology* view in the *{ocp4_starter_project}* project.
 
 At the top left, click the *+* icon. You will see a menu where you have multiple options to deploy application to OpenShift. Click *Container images* to open a dialog that will allow you to specify the information for the image you want to deploy.
 

@@ -13,7 +13,7 @@ In this section, you'll explore how to work with projects using both the web con
 
 == Exploring Your Project in the Web Console
 
-A project named *{ocp4_starter_project}* has already been created for you. Start by exploring it through the link:{ocp4_starter_console_url}[web console,window='_blank'].
+A project named *{ocp4_starter_project}* has already been created for you. Start by exploring it through the *OCP Console* tab on the right side of this page.
 
 After logging in to the OpenShift web console, locate and select your project from the project dropdown. Take a moment to explore the project overview, which provides a summary of your project's resources and activity.
 

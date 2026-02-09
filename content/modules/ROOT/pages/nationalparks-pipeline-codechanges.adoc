@@ -77,11 +77,11 @@ image::devops-pipeline-triggers-eventlistener.png[width=500,link="self",window=_
 In this section you can use a build webhook to trigger a pipeline execution every time there is a change in the nationalparks Gitea repository.
 
 Once you have the URL copied to your clipboard, navigate to the code repository
-that you have on Gitea:
+that you have on Gitea by clicking the *Gitea* tab on the right side of this page, then open the `nationalparks` repository.
 
-link:{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks[Gitea Repository,window='_blank']
+Sign in using the button on the top right of the screen.
 
-Sign-in using the button on the top right of the screen.
+If you prefer link to open it in a new browser tab:{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks[Gitea Repository,window='_blank']
 
 Your Gitea credentials are:
 
@@ -127,15 +127,7 @@ this out.
 
 Next, we will use Gitea to edit a file, commit and push the changes.
 
-Let's open the `BackendController.java` file
-link:{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks/src/branch/master/src/main/java/com/openshift/evg/roadshow/parks/rest[located here in the gitea repository,window='_blank'].
-
-This is the url location in case you want to copy and paste it into your browser:
-
-[source,role="copypaste",subs="attributes"]
-----
-{ocp4_starter_gitea_url}/{ocp4_starter_gitea_user}/nationalparks/src/branch/master/src/main/java/com/openshift/evg/roadshow/parks/rest
-----
+In the *Gitea* tab, open the `nationalparks` repository and navigate to `src/main/java/com/openshift/evg/roadshow/parks/rest` to find the `BackendController.java` file.
 
 Once you have the file on the screen, click the edit button in the top right
 hand corner as shown here:

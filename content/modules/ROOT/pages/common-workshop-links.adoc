@@ -7,10 +7,12 @@ You can find all urls, hostnames, usernames and passwords that are needed during
 
 Note that the urls are also embedded inside the labs so that you don't have to go back and forth between this page and the labs.
 
+TIP: The *OCP Console* and *Gitea* web interfaces are available as tabs on the right side of this page, alongside the *Terminal*. You can switch between them at any time without leaving this window.
+
 [#openshift_cluster_url]
 == OpenShift Cluster URL
 
-*URL*: link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
+Access the OpenShift Console by clicking the *OCP Console* tab on the right side of this page, or open it in a new browser tab: link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
 
 *Username*: {ocp4_starter_username} +
 *Password*: {ocp4_starter_password}
@@ -18,7 +20,7 @@ Note that the urls are also embedded inside the labs so that you don't have to g
 [#git_server]
 == Git Server
 
-*URL*: link:{ocp4_starter_gitea_url}[{ocp4_starter_gitea_url},window='_blank']
+Access the Gitea server by clicking the *Gitea* tab on the right side of this page, or open it in a new browser tab: link:{ocp4_starter_gitea_url}[{ocp4_starter_gitea_url},window='_blank']
 
 *Username*: {ocp4_starter_gitea_user} +
 *Password*: {ocp4_starter_gitea_password}

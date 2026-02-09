@@ -16,7 +16,7 @@ The **default** service account is responsible for running the Pods, and OpenShi
 every Pod that is launched. By changing the permissions for that service
 account, you can enable additional functionality.
 
-To view current permissions in the web console, go to the {ocp4_starter_console_url}/topology/ns/{ocp4_starter_project}[Topology view, link="self",window=_blank], click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*. 
+To view current permissions in the web console, go to the *Topology* view in the *OCP Console* tab, click the `parksmap` entry, go to the *Details* tab, and then click the *Namespace*.
 
 [.bordershadow]
 image::parksmap-permissions-namespace.png[link="self",window=_blank]

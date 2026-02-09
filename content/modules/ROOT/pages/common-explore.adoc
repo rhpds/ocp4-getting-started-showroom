@@ -15,13 +15,13 @@ The OpenShift Console provides an intuitive graphical interface for managing you
 [.bordershadow]
 image::openshift-console-login.png[width=500,link="self",window=_blank]
 
-To access the OpenShift Console, navigate to the following URL in your browser and log in using the provided credentials:
-
-*Console URL:* link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
+To access the OpenShift Console, click the *OCP Console* tab on the right side of this page and log in using the provided credentials:
 
 *Username:* `{user}`
 
 *Password:* `{ocp4_starter_password}`
+
+If you prefer to open it in a new browser tab: link:{ocp4_starter_console_url}[{ocp4_starter_console_url},window='_blank']
 
 Once logged in, you'll see the main dashboard where you can view your projects and navigate through the platform's features.
 
