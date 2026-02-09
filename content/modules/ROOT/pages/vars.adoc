@@ -9,11 +9,11 @@
 :ocp4_starter_gitea_url: {gitea_console_url}
 :ocp4_starter_gitea_password: {gitea_password}
 :ocp4_starter_gitea_user: {gitea_user}
-:ocp4_starter_cli_version: 4.19.4
+:ocp4_starter_cli_version: 4.20.x
 :ocp4_starter_api_url: https://api.cluster.example.com:6443
 :ocp4_starter_roadshow_url: https://github.com/openshift-roadshow
 :ocp4_starter_parksmap_image: quay.io/openshiftroadshow/parksmap:latest
-:ocp4_starter_openshift_docs: https://docs.redhat.com/en/documentation/openshift_container_platform/4.19
+:ocp4_starter_openshift_docs: https://docs.redhat.com/en/documentation/openshift_container_platform/4.20
 :ocp4_starter_openshift_github: https://github.com/openshift
 :ocp4_starter_openshift_roadshow: https://github.com/openshift-roadshow
 :ocp4_starter_devfile_docs: https://devfile.io/docs/2.3.0
