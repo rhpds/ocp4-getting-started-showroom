@@ -31,7 +31,7 @@ image::openshift-console-dashboard.png[link="self",window=_blank]
 [#command_line_interface]
 == Command Line Interface
 
-While the web console is excellent for visual management, the OpenShift CLI (`oc`) provides powerful automation capabilities and access to advanced features. The CLI is a single executable written in Go and is available for Microsoft Windows, macOS, and Linux.
+While the web console is excellent for visual management, the OpenShift CLI (`oc`) provides automation capabilities and access to advanced features. The CLI is a single executable written in Go and is available for Microsoft Windows, macOS, and Linux.
 
 === Verifying the CLI Installation
 

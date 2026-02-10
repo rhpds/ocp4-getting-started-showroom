@@ -132,7 +132,7 @@ In the *Gitea* tab, open the `nationalparks` repository and navigate to `src/mai
 Once you have the file on the screen, click the edit button in the top right
 hand corner as shown here:
 
-image::nationalparks-codechanges-change-code.png[Webhook]
+image::nationalparks-codechanges-change-code.png[Gitea file editor showing the edit button for BackendController.java,link="self",window=_blank]
 
 Change line number 20:
 

@@ -7,7 +7,7 @@ include::vars.adoc[]
 
 Projects are a fundamental concept in OpenShift that help you organize and manage your deployments. An OpenShift project allows a group of users (or individual users) to organize and manage their content in isolation from other groups. Each project has its own resources, policies (defining who can or cannot perform actions), and constraints (such as quotas and limits on resources).
 
-Think of projects as a "wrapper" around all the application services and endpoints you (or your teams) are using for your work. Under the hood, OpenShift projects are built on top of Kubernetes namespaces, but the project abstractions provide administrators with additional features such as enhanaced role-based access controls (RBAC).
+Think of projects as a "wrapper" around all the application services and endpoints you (or your teams) are using for your work. Under the hood, OpenShift projects are built on top of Kubernetes namespaces, but the project abstractions provide administrators with additional features such as enhanced role-based access controls (RBAC).
 
 In this section, you'll explore how to work with projects using both the web console and command line interface. Don't worry if you don't understand all of the terminology—you'll cover these concepts in detail throughout the workshop.
 
@@ -33,7 +33,7 @@ Currently, you won't see any applications or components since nothing has been d
 
 == Working with Your Project via the Command Line
 
-You can also interact with your project using the OpenShift CLI, which provides powerful automation capabilities and access to advanced features.
+You can also interact with your project using the OpenShift CLI, which provides automation capabilities and access to advanced features.
 
 In your web terminal, switch to your project using the following command:
 
@@ -54,6 +54,6 @@ This command sets your current context to work within your assigned project. All
 
 == Next Steps
 
-Throughout this workshop, you'll use both the web console and command line interface to deploy and manage applications within your project. The web console provides an intuitive visual interface for common tasks, while the CLI offers powerful automation capabilities for more advanced operations.
+Throughout this workshop, you'll use both the web console and command line interface to deploy and manage applications within your project. The web console provides an intuitive visual interface for common tasks, while the CLI offers automation capabilities for more advanced operations.
 
 Now that you're familiar with your project and how to access it through both interfaces, you're ready to start deploying applications!

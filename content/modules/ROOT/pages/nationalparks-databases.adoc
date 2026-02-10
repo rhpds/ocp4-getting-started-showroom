@@ -25,7 +25,7 @@ connect to the database. The connection parameters are provided to the Deploymen
 [#create_mongodb_instance]
 == Exercise: Deploy MongoDB
 
-The first step is to create a *Secret* which is used to store senstive information such as database connection credentials.
+The first step is to create a *Secret* which is used to store sensitive information such as database connection credentials.
 In *Workloads* → *Secrets*, click the *Create* button in the upper right and select *From YAML*.
 
 [.bordershadow]
@@ -137,7 +137,7 @@ Finally, click the *Save* button at the bottom of the dialog. This will trigger 
 You are probably wondering how the database connection magically started
 working? When deploying applications to OpenShift, it is always best to create
 environment variables using Secrets or ConfigMaps to define connection parameters to dependent systems. This allows
-for application portability across different environments without without modifying source code. The source file that
+for application portability across different environments without modifying source code. The source file that
 performs the connection as well as creates the database schema can be viewed
 here:
 
@@ -146,7 +146,7 @@ here:
 {ocp4_starter_openshift_roadshow}/nationalparks/blob/master/src/main/java/com/openshift/evg/roadshow/parks/db/MongoDBConnection.java#L44-l48
 ----
 
-Notice that the applicaton catches the exception if the database connection is not defined? This is why you were able to deploy it without it crashing.
+Notice that the application catches the exception if the database connection is not defined? This is why you were able to deploy it without it crashing.
 
 ====
 
@@ -270,7 +270,7 @@ API and asking about the *Routes* and *Services* in the project. If any of them 
 *Label* that is `type=parksmap-backend`, the application knows to contact
 the endpoints to query for map data.
 You can see the code that does this
-link:{ocp4_starter_openshift_roadshow}/parksmap-web/blob/master/src/main/java/com/openshift/evg/roadshow/rest/RouteWatcher.java#L20[in theRouteWatcher.java file,window='_blank'].
+link:{ocp4_starter_openshift_roadshow}/parksmap-web/blob/master/src/main/java/com/openshift/evg/roadshow/rest/RouteWatcher.java#L20[in the RouteWatcher.java file,window='_blank'].
 
 Fortunately, the command line provides a convenient way for you to manipulate
 labels. `describe` the `nationalparks` service:

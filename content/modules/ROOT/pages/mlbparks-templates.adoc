@@ -9,7 +9,7 @@ be wired together and described as a backend for the map visualization tool, so
 that once the application is built and deployed, you will be able to see the new
 map.
 
-image::deprecated/roadshow-app-architecture-mlbparks.png[Application architecture,800,align="center"]
+image::deprecated/roadshow-app-architecture-mlbparks.png[Application architecture,800,align="center",link="self",window=_blank]
 
 Let's combine all of the exercises we have performed in the last several labs by
 using a *Template* that we can instantiate with a single command.  While we
@@ -125,11 +125,11 @@ microservices, fix bugs, and more.
 
 TIP: You'll notice apps are already inside `workshop` application group and they have a nice EAP and MongoDB icon. This is thanks to the label `app.kubernetes.io/part-of` and `app.kubernetes.io/name` that the template already setup for both DeploymentConfigs 
 
-image::deprecated/mlbparks-templates-complete-overview.png[Complete overview]
+image::deprecated/mlbparks-templates-complete-overview.png[Complete overview,link="self",window=_blank]
 
 In addition to being able to instantiate templates from the command line as we did above, templates can also be instantiated from the Developer Perspective in the web console. Click *+Add*, then *From Catalog* and search for `mlb`. You should see a result for `MLBparks`.
 
-image::deprecated/mlbparks-templates-dev-catalog.png[Template in Developer Catalog]
+image::deprecated/mlbparks-templates-dev-catalog.png[Template in Developer Catalog,link="self",window=_blank]
 
 If you click on `MLBparks` and then click the *Instantiate Template* button, you'll see a form that guides you through the different required and optional parameters needed to instantiate this template.
 
@@ -146,8 +146,8 @@ oc get template mlbparks -o yaml
 
 But as always, you can use the OpenShift web console to do the same. In the Developer Perspective, click *Advanced -> Search* in the left navigation, then select *Template* from the dropdown, and click *mlbparks*. 
 
-image::deprecated/mlbparks-templates-yaml-menu.png[Complete overview]
+image::deprecated/mlbparks-templates-yaml-menu.png[Complete overview,link="self",window=_blank]
 
 On the next page, click *YAML* to see/edit the YAML from here.
 
-image::deprecated/mlbparks-templates-yaml-edit.png[Template YAML edit]
+image::deprecated/mlbparks-templates-yaml-edit.png[Template YAML edit,link="self",window=_blank]

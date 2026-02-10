@@ -3,7 +3,7 @@
 
 include::vars.adoc[]
 
-This section introduces you to the architecture of the ParksMap application, which you'll use throughout this workshop. Understanding the architecture will help you better unsderstand the tasks you'll perform from a developer's perspective. ParksMap is a polyglot geo-spatial data visualization application built using a microservices architecture. It consists of multiple services developed using different programming languages and frameworks.
+This section introduces you to the architecture of the ParksMap application, which you'll use throughout this workshop. Understanding the architecture will help you better understand the tasks you'll perform from a developer's perspective. ParksMap is a polyglot geo-spatial data visualization application built using a microservices architecture. It consists of multiple services developed using different programming languages and frameworks.
 
 [.bordershadow]
 image::roadshow-app-architecture.png[align="center",link="self",window=_blank]

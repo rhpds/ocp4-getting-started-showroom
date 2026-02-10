@@ -110,7 +110,7 @@ Lastly, verify that the *Service* accurately reflects two endpoints:
 oc describe svc parksmap
 ----
 
-You will see output resembling the following. Notice that the *Servce* now targets two *Endpoints*:
+You will see output resembling the following. Notice that the *Service* now targets two *Endpoints*:
 
 [.console-output]
 [source]
@@ -124,7 +124,7 @@ Labels:            app=workshop
                    component=parksmap
                    role=frontend
 Annotations:       openshift.io/generated-by: OpenShiftWebConsole
-Selector:          app=parksmap,deploymentconfig=parksmap
+Selector:          app=parksmap,deployment=parksmap
 Type:              ClusterIP
 IP:                172.30.22.209
 Port:              8080-tcp  8080/TCP

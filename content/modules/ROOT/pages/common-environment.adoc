@@ -3,7 +3,7 @@
 
 include::vars.adoc[]
 
-image::common-environment-ocp-architecture.png[OpenShift Architecture]
+image::common-environment-ocp-architecture.png[OpenShift Architecture,link="self",window=_blank]
 
 The workshop is hosted in an OpenShift environment that is running on a
 public cloud. The environment consists of the following systems:

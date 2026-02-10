@@ -165,11 +165,11 @@ get more information about the *Pod* using the `oc get` command.
 Change the output format to *YAML* using the
 following syntax:
 
-NOTE: Make sure you use the correct *Pod* name from your output.
+NOTE: Make sure you use the correct *Pod* name from your `oc get pods` output above.
 
-[source,role="copypaste"]
+[source]
 ----
-oc get pod parksmap-1-gxbgq -o yaml
+oc get pod <pod-name> -o yaml
 ----
 
 You should see something like the following output (which has been truncated due
@@ -257,7 +257,7 @@ requests.
 When you asked OpenShift to run the image, it automatically created a *Service*
 for you. Remember that services are an internal construct. They are not
 available to the "outside world", or anything that is outside the OpenShift
-environment. That's okay, as you will learn how to use *Routes* to adddress this later.
+environment. That's okay, as you will learn how to use *Routes* to address this later.
 
 
 A *Service* maps to a set of *Pods* using a *Selector*. The *Selector* uses *Labels* to determine which Pods should receive traffic. 
