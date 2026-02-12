@@ -109,11 +109,11 @@ The `EventListener` has an OpenShift `Route` exposed that we are going to use as
 http://el-nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/
 ----
 
-Paste your link into the "Payload URL" field.
+Paste your link into the "Target URL" field.
 
 Change the `Content Type` to `application/json`.
 
-Finally, click on *Update Webhook*.
+Finally, click on *Add Webhook*.
 
 [.bordershadow]
 image::nationalparks-codechanges-config-webhook.png[link="self",window=_blank]
