@@ -262,6 +262,8 @@ link:https://nationalparks-{ocp4_starter_project}.{ocp4_starter_apps_domain}/ws/
 
 WARNING: If the Pod is Running and the application is not available, please wait a few seconds and refresh the page, since you haven't configured Health Checks for it yet.
 
+NOTE: You can also find the URL for your *Route* in the *Topology* view under the *Resources* tab for your `nationalparks` Deployment and append `/ws/info` to the URL.
+
 You will see a simple JSON string:
 
 [source]
